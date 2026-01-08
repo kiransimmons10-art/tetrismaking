@@ -133,7 +133,7 @@ namespace tetrismaking
             scorelabel.Text = Atotal +" "+ Btotal + " "+ Ctotal + "  "+ Dtotal;
 
             
-
+             
        
             
        
