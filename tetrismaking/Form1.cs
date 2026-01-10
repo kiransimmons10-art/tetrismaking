@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Drawing.Text;
 
 namespace tetrismaking
 {
@@ -16,7 +17,7 @@ namespace tetrismaking
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         SolidBrush greyBrush = new SolidBrush(Color.Gray);
             Pen greyPen = new Pen(Color.Gray, 3);
-       
+        string[] smth = new string[4];
         //invisible swuares n stuff
         Rectangle a1 = new Rectangle(60, 100, 70, 70);
         Rectangle a2 = new Rectangle(135, 100, 70, 70);
@@ -60,11 +61,19 @@ namespace tetrismaking
 
         //socre 
         int score = 0;
-      
+        int realscore;
         //movement controls
         Boolean apressed = false;
         Boolean wpressed = false;
         Boolean dpressed = false;
+        Boolean spressed = false;
+
+        //checking which row is full
+        Boolean rowA = false;
+        Boolean rowB = false;
+        Boolean rowC = false;
+        Boolean rowD = false;
+
 
         public Form1()
         {
@@ -74,9 +83,10 @@ namespace tetrismaking
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
             Invalidate();
             //checking if each grid space intersects with the player and then upping their int
-
+            smth[1] = "hi";
             if (a1.IntersectsWith(live) && B1 == 1)
             { A1 = 1; live.Y = 25; }
 
@@ -125,19 +135,112 @@ namespace tetrismaking
             if (d4.IntersectsWith(live))
             { D4 = 1; live.Y = 25; }
 
-
+            //adding up the total value of each row 
             int Atotal = A1+A2+A3+A4;
             int Btotal = B1+B2+B3+B4;
             int Ctotal = C1+C2+C3+C4;
             int Dtotal = D1+D2+D3+D4;
             scorelabel.Text = Atotal +" "+ Btotal + " "+ Ctotal + "  "+ Dtotal;
+            //if a row is filled clearing it and shifting ti down
+            if (Dtotal == 4)
+            {
+                realscore += 4;
+                D1 = 0;
+                D2 = 0;
+                D3 = 0;
+                D4 = 0;
+                rowD = true;
+                moverows();
 
-            
+            }
              
        
             
        
         }
+        private void moverows()
+        {
+            if (rowD == true)
+            {
+                {
+                    if (C1 == 1)
+                        D1 = 1;
+                    C1 = 0;
+                }
+                if (C2 == 1)
+                {
+                    D2 = 1;
+                    C2 = 0;
+                }
+                if (C3 == 1)
+                {
+                    D3 = 1;
+                    C3 = 0;
+                }
+                if (C4 == 1)
+                {
+                    D4 = 1;
+                    C4 = 0;
+                }
+            }
+            if (rowD == true || rowC == true)
+            {
+                if (B1 == 1)
+                {
+                    C1 = 1;
+                    B1 = 0;
+                }
+                if (B2 == 1)
+                {
+                    C2 = 1;
+                    B2 = 0;
+                }
+                if (B3 == 1)
+                {
+                    C3 = 1;
+                    B3 = 0;
+                }
+                if (B4 == 1)
+                {
+                    C4 = 1;
+                    B4 = 0;
+                }
+            }
+            if (rowD == true || rowC == true || rowB == true)
+            {
+                if (A1 == 1)
+                {
+                    B1 = 1;
+                    A1 = 0;
+                }
+                if (A2 == 1)
+                {
+                    B2 = 1;
+                    A2 = 0;
+                }
+                if (A3 == 1)
+                {
+                    B3 = 1;
+                    A3 = 0;
+                }
+                if (A4 == 1)
+                {
+                    B4 = 1;
+                    A4 = 0;
+                }
+            
+
+
+
+
+
+            }
+
+
+            rowD = false;
+
+        }
+
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -231,26 +334,23 @@ namespace tetrismaking
             switch (e.KeyCode)
             {
                 case Keys.A:
-                    apressed = true;
+                    if ( live.X > 60)
+                        live.X -= 75;
                     break;
                 case Keys.D:
-                    dpressed = true;
+                    if ( live.X < 275)
+                        live.X += 75;
+                    break;
+                case Keys.S:
+                        live.Y += 75;
                     break;
             }
 
             }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {//cheking when keys are let go of and then deactivating their boolean
-            switch (e.KeyCode)
-            {
-                case Keys.A:
-                    apressed = false;
-                    break;
-                case Keys.D:
-                    dpressed = false;
-                    break;
-            }
+        {
+            
             }
        
 
@@ -261,18 +361,10 @@ namespace tetrismaking
 
         private void leftrighttimer_Tick(object sender, EventArgs e)
         {
-              
-            //triggering the left and right movemnt 
-            horisontalmove();
+           
         }
         private void horisontalmove()
-        {   //moving the square left and right when keys are pressed
-            if (apressed)
-                live.X -= 75;
-            if (dpressed)
-                live.X += 75;
-            //slowing down movement 
-            Thread.Sleep(100);
+        {   
             
         }
     }
