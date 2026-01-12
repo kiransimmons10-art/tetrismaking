@@ -17,7 +17,7 @@ namespace tetrismaking
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         SolidBrush greyBrush = new SolidBrush(Color.Gray);
             Pen greyPen = new Pen(Color.Gray, 3);
-        string[] smth = new string[4];
+       
         //invisible swuares n stuff
         Rectangle a1 = new Rectangle(60, 100, 70, 70);
         Rectangle a2 = new Rectangle(135, 100, 70, 70);
@@ -39,8 +39,7 @@ namespace tetrismaking
         //live square 
         Rectangle live = new Rectangle(60, 25, 70, 70);
 
-        //bottom of map 
-        Rectangle bottom = new Rectangle(00, 395, 900, 90);
+       
         //if occupied ints
         int A1 = 0;
         int A2 = 0;
@@ -74,6 +73,11 @@ namespace tetrismaking
         Boolean rowC = false;
         Boolean rowD = false;
 
+        //random number generator 
+        Random randgen = new Random();
+
+        //int to determine the shape of the block
+        int shape = 1;
 
         public Form1()
         {
@@ -86,54 +90,152 @@ namespace tetrismaking
             
             Invalidate();
             //checking if each grid space intersects with the player and then upping their int
-            smth[1] = "hi";
-            if (a1.IntersectsWith(live) && B1 == 1)
-            { A1 = 1; live.Y = 25; }
+            if (shape == 1)
+            {
+                if (a1.IntersectsWith(live) && B1 == 1)
+                { A1 = 1; returnlive(); }
 
-            if (a2.IntersectsWith(live) && B2 == 1)
-            { A2 = 1; live.Y = 25; }
+                if (a2.IntersectsWith(live) && B2 == 1)
+                { A2 = 1; returnlive(); }
 
-            if (a3.IntersectsWith(live) && B3 == 1)
-            { A3 = 1; live.Y = 25; }
+                if (a3.IntersectsWith(live) && B3 == 1)
+                { A3 = 1; returnlive(); }
 
-            if (a4.IntersectsWith(live) && B4 == 1)
-            { A4 = 1; live.Y = 25; }
+                if (a4.IntersectsWith(live) && B4 == 1)
+                { A4 = 1; returnlive(); }
 
-            if (b1.IntersectsWith(live) && C1 == 1)
-            { B1 = 1; live.Y = 25; }
+                if (b1.IntersectsWith(live) && C1 == 1)
+                { B1 = 1; returnlive(); }
 
-            if (b2.IntersectsWith(live) && C2 == 1)
-            { B2 = 1; live.Y = 25; }
+                if (b2.IntersectsWith(live) && C2 == 1)
+                { B2 = 1; returnlive(); }
 
-            if (b3.IntersectsWith(live) && C3 == 1)
-            { B3 = 1; live.Y = 25; }
+                if (b3.IntersectsWith(live) && C3 == 1)
+                { B3 = 1; returnlive(); }
 
-            if (b4.IntersectsWith(live) && C4 == 1)
-            { B4 = 1; live.Y = 25; }
+                if (b4.IntersectsWith(live) && C4 == 1)
+                { B4 = 1; returnlive(); }
 
-            if (c1.IntersectsWith(live) && D1 == 1)
-            { C1 = 1; live.Y = 25; }
+                if (c1.IntersectsWith(live) && D1 == 1)
+                { C1 = 1; returnlive(); }
 
-            if (c2.IntersectsWith(live) && D2 == 1)
-            { C2 = 1; live.Y = 25; }
+                if (c2.IntersectsWith(live) && D2 == 1)
+                { C2 = 1; returnlive(); }
 
-            if (c3.IntersectsWith(live) && D3 == 1)
-            { C3 = 1; live.Y = 25; }
+                if (c3.IntersectsWith(live) && D3 == 1)
+                { C3 = 1; returnlive(); }
 
-            if (c4.IntersectsWith(live) && D4 == 1)
-            { C4 = 1; live.Y = 25; }
+                if (c4.IntersectsWith(live) && D4 == 1)
+                { C4 = 1; returnlive(); }
 
-            if (d1.IntersectsWith(live))
-            { D1 = 1; live.Y = 25; }
+                if (d1.IntersectsWith(live))
+                { D1 = 1; returnlive(); }
 
-            if (d2.IntersectsWith(live))
-            { D2 = 1; live.Y = 25; }
+                if (d2.IntersectsWith(live))
+                { D2 = 1; returnlive(); }
 
-            if (d3.IntersectsWith(live))
-            { D3 = 1; live.Y = 25; }
+                if (d3.IntersectsWith(live))
+                { D3 = 1; returnlive(); }
 
-            if (d4.IntersectsWith(live))
-            { D4 = 1; live.Y = 25; }
+                if (d4.IntersectsWith(live))
+                { D4 = 1; returnlive(); }
+            }
+            if (shape == 2)
+            {
+                if (a1.IntersectsWith(live) && B1 == 1)
+                { A1 = 1; returnlive(); }
+
+                if (a2.IntersectsWith(live) && B2 == 1)
+                { A2 = 1; returnlive(); }
+
+                if (a3.IntersectsWith(live) && B3 == 1)
+                { A3 = 1; returnlive(); }
+
+                if (a4.IntersectsWith(live) && B4 == 1)
+                { A4 = 1; returnlive(); }
+
+                if (b1.IntersectsWith(live) && C1 == 1)
+                { B1 = 1; A1 = 1; returnlive(); }
+
+                if (b2.IntersectsWith(live) && C2 == 1)
+                { B2 = 1; A2 = 1; returnlive(); }
+
+                if (b3.IntersectsWith(live) && C3 == 1)
+                { B3 = 1; A3 = 1; returnlive(); }
+
+                if (b4.IntersectsWith(live) && C4 == 1)
+                { B4 = 1; A4 = 1; returnlive(); }
+
+                if (c1.IntersectsWith(live) && D1 == 1)
+                { C1 = 1; B1 = 1; returnlive(); }
+
+                if (c2.IntersectsWith(live) && D2 == 1)
+                { C2 = 1; B2 = 1; returnlive(); }
+
+                if (c3.IntersectsWith(live) && D3 == 1)
+                { C3 = 1; B3 = 1; returnlive(); }
+
+                if (c4.IntersectsWith(live) && D4 == 1)
+                { C4 = 1; B4 = 1; returnlive(); }
+
+                if (d1.IntersectsWith(live))
+                { D1 = 1; C1 = 1; returnlive(); }
+
+                if (d2.IntersectsWith(live))
+                { D2 = 1;C2 = 1; returnlive(); }
+
+                if (d3.IntersectsWith(live))
+                { D3 = 1; C3 = 1; returnlive(); }
+
+                if (d4.IntersectsWith(live))
+                { D4 = 1; C4 = 1; returnlive(); }
+
+            }
+            if (shape == 3)
+            {
+                if (a1.IntersectsWith(live) && B1 == 1)
+                { A1 = 1; A2 = 1; returnlive(); }
+
+                if (a2.IntersectsWith(live) && B2 == 1)
+                { A2 = 1; A3 = 1; returnlive(); }
+
+                if (a3.IntersectsWith(live) && B3 == 1)
+                { A3 = 1; A4 = 1; returnlive(); }
+
+               
+
+                if (b1.IntersectsWith(live) && C1 == 1)
+                { B1 = 1; B2 = 1; returnlive(); }
+
+                if (b2.IntersectsWith(live) && C2 == 1)
+                { B2 = 1; B3 = 1; returnlive(); }
+
+                if (b3.IntersectsWith(live) && C3 == 1)
+                { B3 = 1; B4 = 1; returnlive(); }
+
+             
+
+                if (c1.IntersectsWith(live) && D1 == 1)
+                { C1 = 1; C2 = 1; returnlive(); }
+
+                if (c2.IntersectsWith(live) && D2 == 1)
+                { C2 = 1; C3 = 1; returnlive(); }
+
+                if (c3.IntersectsWith(live) && D3 == 1)
+                { C3 = 1; C4 = 1; returnlive(); }
+
+
+                if (d1.IntersectsWith(live))
+                { D1 = 1; D2 = 1; returnlive(); }
+
+                if (d2.IntersectsWith(live))
+                { D2 = 1; D3 = 1; returnlive(); }
+
+                if (d3.IntersectsWith(live))
+                { D3 = 1; D4 = 1; returnlive(); }
+
+               
+            }
 
             //adding up the total value of each row 
             int Atotal = A1+A2+A3+A4;
@@ -153,16 +255,77 @@ namespace tetrismaking
                 moverows();
 
             }
-             
-       
-            
-       
+            if (Ctotal == 4)
+            {
+                realscore += 4;
+                C1 = 0;
+                C2 = 0;
+                C3 = 0;
+                C4 = 0;
+                rowC = true;
+                moverows();
+
+            }
+            if (Btotal == 4)
+            {
+                realscore += 4;
+                B1 = 0;
+                B2 = 0;
+                B3 = 0;
+                B4 = 0;
+                rowB = true;
+                moverows();
+
+            }
+            if (Atotal == 4)
+            {
+                realscore += 4;
+                A1 = 0;
+                A2 = 0;
+                A3 = 0;
+                A4 = 0;
+                rowA = true;
+                moverows();
+
+            }
+
+
+
+
+        }
+        private void returnlive()
+        {
+            Thread.Sleep(10);
+            //moving the square back up
+            live.Y = 25;
+           
+            //randomly generating the next shape
+           shape= randgen.Next(1, 4);
+            //based on number changing shape length
+            if (shape == 1)
+            {
+                live.Height = 70;
+                live.Width = 70;
+            }
+
+            if (shape == 2)
+            {
+                live.Height = 145;
+                live.Width = 70;
+            }
+            if (shape == 3)
+            {
+                live.Height = 70;
+                live.Width = 145;
+                if ( live.X == 285)
+                    live.X = 210;
+            }
         }
         private void moverows()
-        {
+        {//if the entire bottom row is full 
             if (rowD == true)
             {
-                {
+                {//manually checking if the square above is occupied then moving the value down
                     if (C1 == 1)
                         D1 = 1;
                     C1 = 0;
@@ -184,7 +347,7 @@ namespace tetrismaking
                 }
             }
             if (rowD == true || rowC == true)
-            {
+            {//if row d or row c is filled then same as above but upper rows
                 if (B1 == 1)
                 {
                     C1 = 1;
@@ -207,7 +370,7 @@ namespace tetrismaking
                 }
             }
             if (rowD == true || rowC == true || rowB == true)
-            {
+            {//the pattern continues 
                 if (A1 == 1)
                 {
                     B1 = 1;
@@ -236,7 +399,7 @@ namespace tetrismaking
 
             }
 
-
+            
             rowD = false;
 
         }
@@ -316,8 +479,7 @@ namespace tetrismaking
             //generating live square 
             g.FillRectangle(greyBrush, live);
 
-            //generating floor
-            g.FillRectangle(greyBrush, bottom);
+          
 
 
 
@@ -331,21 +493,64 @@ namespace tetrismaking
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {//chaking when keys are pressed down and activating their boolean
-            switch (e.KeyCode)
+            if (shape == 1)
             {
-                case Keys.A:
-                    if ( live.X > 60)
-                        live.X -= 75;
-                    break;
-                case Keys.D:
-                    if ( live.X < 275)
-                        live.X += 75;
-                    break;
-                case Keys.S:
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        if (live.X > 60)
+                            live.X -= 75;
+                        break;
+                    case Keys.D:
+                        if (live.X < 275)
+                            live.X += 75;
+                        break;
+                    case Keys.S:
                         live.Y += 75;
-                    break;
+                        break;
+                }
             }
+            if (shape == 2)
+            {
+                   
+                
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        if (live.X > 60)
+                            live.X -= 75;
+                        break;
+                    case Keys.D:
+                        if (live.X < 275)
+                            live.X += 75;
+                        break;
+                    case Keys.S:
+                        live.Y += 75;
+                        break;
+                   
+                }
+            }
+            if (shape == 3)
+            {
+                if (live.X > 210)
+                    live.X = 210;
 
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        if (live.X > 60)
+                            live.X -= 75;
+                        break;
+                    case Keys.D:
+                        if (live.X < 200)
+                            live.X += 75;
+                        break;
+                    case Keys.S:
+                        live.Y += 75;
+                        break;
+
+                }
+            }
             }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
