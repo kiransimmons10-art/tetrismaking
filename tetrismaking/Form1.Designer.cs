@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.invalidatetimer = new System.Windows.Forms.Timer(this.components);
+            this.gravitytimer = new System.Windows.Forms.Timer(this.components);
             this.scorelabel = new System.Windows.Forms.Label();
-            this.leftrighttimer = new System.Windows.Forms.Timer(this.components);
+            this.widesquaretimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // timer1
+            // invalidatetimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.invalidatetimer.Enabled = true;
+            this.invalidatetimer.Interval = 1;
+            this.invalidatetimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // timer2
+            // gravitytimer
             // 
-            this.timer2.Enabled = true;
-            this.timer2.Interval = 1000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.gravitytimer.Enabled = true;
+            this.gravitytimer.Interval = 1000;
+            this.gravitytimer.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // scorelabel
             // 
@@ -56,11 +56,10 @@
             this.scorelabel.TabIndex = 0;
             this.scorelabel.Text = "label1";
             // 
-            // leftrighttimer
+            // widesquaretimer
             // 
-            this.leftrighttimer.Enabled = true;
-            this.leftrighttimer.Interval = 1;
-            this.leftrighttimer.Tick += new System.EventHandler(this.leftrighttimer_Tick);
+            this.widesquaretimer.Interval = 300;
+            this.widesquaretimer.Tick += new System.EventHandler(this.leftrighttimer_Tick);
             // 
             // Form1
             // 
@@ -82,10 +81,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer invalidatetimer;
+        private System.Windows.Forms.Timer gravitytimer;
         private System.Windows.Forms.Label scorelabel;
-        private System.Windows.Forms.Timer leftrighttimer;
+        private System.Windows.Forms.Timer widesquaretimer;
     }
 }
 
