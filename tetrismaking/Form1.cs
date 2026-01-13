@@ -386,21 +386,29 @@ namespace tetrismaking
                 {//manually checking if the square above is occupied then moving the value down
                     if (C1 == 1)
                         D1 = 1;
+                    D11 = C11;
+                    C11 = 0;
                     C1 = 0;
                 }
                 if (C2 == 1)
                 {
                     D2 = 1;
+                    D22 = C22;
+                    C22 = 0;
                     C2 = 0;
                 }
                 if (C3 == 1)
                 {
                     D3 = 1;
+                    D33 = C33;
+                    C33 = 0;
                     C3 = 0;
                 }
                 if (C4 == 1)
                 {
                     D4 = 1;
+                    D44 = C44;
+                    C44 = 0;
                     C4 = 0;
                 }
             }
@@ -409,21 +417,29 @@ namespace tetrismaking
                 if (B1 == 1)
                 {
                     C1 = 1;
+                    C11 = B11;
+                    B11 = 0;
                     B1 = 0;
                 }
                 if (B2 == 1)
                 {
                     C2 = 1;
+                    C22 = B22;
+                    B22 = 0;
                     B2 = 0;
                 }
                 if (B3 == 1)
                 {
                     C3 = 1;
+                    C33 = B33;
+                    B33 = 0;
                     B3 = 0;
                 }
                 if (B4 == 1)
                 {
                     C4 = 1;
+                    C44 = B44;
+                    B44 = 0;
                     B4 = 0;
                 }
             }
@@ -432,21 +448,29 @@ namespace tetrismaking
                 if (A1 == 1)
                 {
                     B1 = 1;
+                    B11 = A11;
+                    A11 = 0;
                     A1 = 0;
                 }
                 if (A2 == 1)
                 {
                     B2 = 1;
+                    B22 = A22;
+                    A22 = 0;
                     A2 = 0;
                 }
                 if (A3 == 1)
                 {
                     B3 = 1;
+                    B33 = A33;
+                    A33 = 0;
                     A3 = 0;
                 }
                 if (A4 == 1)
                 {
                     B4 = 1;
+                    B44 = A44;
+                    A44 = 0;
                     A4 = 0;
                 }
             
