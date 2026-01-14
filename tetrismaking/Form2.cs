@@ -108,11 +108,7 @@ namespace tetrismaking
         //socre 
         int score = 0;
         int realscore;
-        //movement controls
-        Boolean apressed = false;
-        Boolean wpressed = false;
-        Boolean dpressed = false;
-        Boolean spressed = false;
+     
 
         //checking which row is full
         Boolean rowE = false;
@@ -824,6 +820,8 @@ namespace tetrismaking
                     g.FillRectangle(blackBrush, live.X + 70, live.Y, 5, 70);
                 }
             }
+
+           
         }
 
         private void gravitytimer_Tick(object sender, EventArgs e)
@@ -831,14 +829,82 @@ namespace tetrismaking
             //moving the box dow 
             live.Y += 75;
         }
-        private void gameend()
-        {
+        private void gameend()//when you overfill the box and the gane ends
+        {//stopping the movement of the live block
+            gravitytimer.Enabled = false;
+           //moving it off the screen 
+            live.X = 800;
+            BackColor = Color.Black;
+            //animation of the whole thing slowly filling up
+            D11 = 1; 
+            Refresh();
+            Thread.Sleep(100);
+            D22 = 2;
+            Refresh();
+            Thread.Sleep(100);
+            D33 = 3;
+            Refresh();
+            Thread.Sleep(100);
+            D44 = 1;
+            Refresh();
+            Thread.Sleep(100);
+            C11 = 2;
+            Refresh();
+            Thread.Sleep(100);
+            C22 = 3;
+            Refresh();
+            Thread.Sleep(100);
+            C33 = 1;
+            Refresh();
+            Thread.Sleep(100);
+            C44 = 2;
+            Refresh();
+            Thread.Sleep(100);
+            B11 = 3;
+            Refresh();
+            Thread.Sleep(100);
+            B22 = 1;
+            Refresh();
+            Thread.Sleep(100);
+            B33 = 2;
+            Refresh();
+            Thread.Sleep(100);
+            B44 = 3;
+            Refresh();
+            Thread.Sleep(100);
+            A11 = 1;
+            Refresh();
+            Thread.Sleep(100);
+            A22 = 2;
+            Refresh();
+            Thread.Sleep(100);
+            A33 = 3;
+            Refresh();
+            Thread.Sleep(100);
+            A44 = 1;
+            Refresh();
+            Thread.Sleep(100);
+            E11 = 2;
+            Refresh();
+            Thread.Sleep(100);
+            E22 = 3;
+            Refresh();
+            Thread.Sleep(100);
+            E33 = 1;
+            Refresh();
+            Thread.Sleep(100);
+            E44 = 2;
+            Refresh();
+            Thread.Sleep(100);
+            Refresh();
             lost = true;
 
         }
 
         private void Form2_KeyDown(object sender, KeyEventArgs e)
-        {
+        {  //in case of frame perfect movement where the player clips thru the floor
+            if (live.Y > 600)
+                returnlive();
             //movement for each shape
             //1x1 square so has many degrees of freedom 
             if (shape == 1)

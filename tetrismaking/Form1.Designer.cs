@@ -28,45 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.invalidatetimer = new System.Windows.Forms.Timer(this.components);
-            this.gravitytimer = new System.Windows.Forms.Timer(this.components);
-            this.scorelabel = new System.Windows.Forms.Label();
-            this.widesquaretimer = new System.Windows.Forms.Timer(this.components);
+            this.startbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // invalidatetimer
+            // startbutton
             // 
-            this.invalidatetimer.Enabled = true;
-            this.invalidatetimer.Interval = 1;
-            this.invalidatetimer.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // gravitytimer
-            // 
-            this.gravitytimer.Enabled = true;
-            this.gravitytimer.Interval = 1000;
-            this.gravitytimer.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // scorelabel
-            // 
-            this.scorelabel.AutoSize = true;
-            this.scorelabel.Location = new System.Drawing.Point(0, 0);
-            this.scorelabel.Name = "scorelabel";
-            this.scorelabel.Size = new System.Drawing.Size(35, 13);
-            this.scorelabel.TabIndex = 0;
-            this.scorelabel.Text = "label1";
-            // 
-            // widesquaretimer
-            // 
-            this.widesquaretimer.Interval = 300;
-            this.widesquaretimer.Tick += new System.EventHandler(this.leftrighttimer_Tick);
+            this.startbutton.Location = new System.Drawing.Point(186, 162);
+            this.startbutton.Name = "startbutton";
+            this.startbutton.Size = new System.Drawing.Size(75, 23);
+            this.startbutton.TabIndex = 0;
+            this.startbutton.Text = "Start";
+            this.startbutton.UseVisualStyleBackColor = true;
+            this.startbutton.Click += new System.EventHandler(this.startbutton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 660);
-            this.Controls.Add(this.scorelabel);
+            this.ClientSize = new System.Drawing.Size(483, 460);
+            this.Controls.Add(this.startbutton);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -75,16 +55,12 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Timer invalidatetimer;
-        private System.Windows.Forms.Timer gravitytimer;
-        private System.Windows.Forms.Label scorelabel;
-        private System.Windows.Forms.Timer widesquaretimer;
+        private System.Windows.Forms.Button startbutton;
     }
 }
 
