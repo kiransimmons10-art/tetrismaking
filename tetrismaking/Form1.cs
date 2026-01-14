@@ -73,6 +73,8 @@ namespace tetrismaking
         int D4 = 0;
 
         //for determining the color of the shape that filled them
+        //A value of 1 is red, 2 is orange and 3 is cyan
+       
         int A11 = 0;
         int A22 = 0;
         int A33 = 0;
@@ -136,7 +138,7 @@ namespace tetrismaking
                 if (e4.IntersectsWith(live) && A4 == 1)
                     gameend();
 
-
+                //return live moves the square up and changes its shape 
                 if (a1.IntersectsWith(live) && B1 == 1)
                 { A1 = 1; A11 = 1; returnlive(); }
 
@@ -198,7 +200,7 @@ namespace tetrismaking
 
                 if (a4.IntersectsWith(live) && B4 == 1)
                 { A4 = 1; A44 = 2; gameend(); }
-
+                //affects two spaces but only checks for the bottom square 
                 if (b1.IntersectsWith(live) && C1 == 1)
                 { B1 = 1; A1 = 1; B11 = 2; A11 = 2; returnlive(); }
 
@@ -240,7 +242,7 @@ namespace tetrismaking
             {//wide square, only has three lateral positions so only three per level
                 if (e1.IntersectsWith(live) && A1 == 1 || e1.IntersectsWith(live) && A2 == 1)
                 { A1 = 1; A2 = 1; A11 = 3; A22 = 3; gameend(); }
-
+                
                 if (e2.IntersectsWith(live) && A2 == 1 || e2.IntersectsWith(live) && A3 == 1)
                 { A2 = 1; A3 = 1; A33 = 3; A22 = 3; gameend(); }
 
@@ -248,7 +250,8 @@ namespace tetrismaking
                 { A3 = 1; A4 = 1; A33 = 3; A44 = 3; gameend(); }
 
 
-
+                //only technically exists as the left square but has an overlay that shows 2 wide 
+                //also checks if the square diagonally below it is full so it doesnt pass thru
                 if (a1.IntersectsWith(live) && B1 == 1 || a1.IntersectsWith(live) && B2 == 1)
                 { A1 = 1;  A2 = 1; A11 = 3; A22 = 3; returnlive(); }
 
@@ -267,7 +270,7 @@ namespace tetrismaking
                 { B2 = 1; B3 = 1; B22 = 3; B33 = 3; returnlive(); }
 
                 if (b3.IntersectsWith(live) && C3 == 1 || b3.IntersectsWith(live) && C4 == 1)
-                { B3 = 1; B4 = 1; B33 = 3; A44 = 3; returnlive(); }
+                { B3 = 1; B4 = 1; B33 = 3; B44 = 3; returnlive(); }
 
              
 
@@ -303,11 +306,19 @@ namespace tetrismaking
             if (Dtotal == 4)
             {
                 realscore += 4;
+                //making unoccupied
                 D1 = 0;
                 D2 = 0;
                 D3 = 0;
                 D4 = 0;
+                //making black
+                D11 = 0;
+                D22 = 0;
+                D33 = 0;
+                D44 = 0;
+                //telling the next function which is row is full
                 rowD = true;
+                //starting the next function
                 moverows();
 
             }
@@ -318,6 +329,10 @@ namespace tetrismaking
                 C2 = 0;
                 C3 = 0;
                 C4 = 0;
+                C11 = 0;
+                C22 = 0;
+                C33 = 0;
+                C44 = 0;
                 rowC = true;
                 moverows();
 
@@ -329,6 +344,10 @@ namespace tetrismaking
                 B2 = 0;
                 B3 = 0;
                 B4 = 0;
+                B11 = 0;
+                B22 = 0;
+                B33 = 0;
+                B44 = 0;
                 rowB = true;
                 moverows();
 
@@ -340,6 +359,10 @@ namespace tetrismaking
                 A2 = 0;
                 A3 = 0;
                 A4 = 0;
+                A11 = 0;
+                A22 = 0;
+                A33 = 0;
+                A44 = 0;
                 rowA = true;
                 moverows();
 
@@ -354,7 +377,7 @@ namespace tetrismaking
           
             //moving the square back up
             live.Y = 25;
-            if (gravitytimer.Interval > 100)
+            if (gravitytimer.Interval > 500)
             gravitytimer.Interval -= 25; 
             //randomly generating the next shape
            shape= randgen.Next(1, 4);
@@ -386,6 +409,7 @@ namespace tetrismaking
                 {//manually checking if the square above is occupied then moving the value down
                     if (C1 == 1)
                         D1 = 1;
+                    D11 = 0;
                     D11 = C11;
                     C11 = 0;
                     C1 = 0;
@@ -393,6 +417,7 @@ namespace tetrismaking
                 if (C2 == 1)
                 {
                     D2 = 1;
+                    D22 = 0;
                     D22 = C22;
                     C22 = 0;
                     C2 = 0;
@@ -400,6 +425,7 @@ namespace tetrismaking
                 if (C3 == 1)
                 {
                     D3 = 1;
+                    D33 = 0;
                     D33 = C33;
                     C33 = 0;
                     C3 = 0;
@@ -407,6 +433,7 @@ namespace tetrismaking
                 if (C4 == 1)
                 {
                     D4 = 1;
+                    D44 = 0;
                     D44 = C44;
                     C44 = 0;
                     C4 = 0;
@@ -489,10 +516,34 @@ namespace tetrismaking
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {//initializing graphics 
+          
             Graphics g = e.Graphics;
           //what shows if you have not lost 
             if (lost == false)
             {
+                BackColor = Color.Black;
+                //grey box around game
+                g.FillRectangle(greyBrush, 50, 20, 5, 535);
+                g.FillRectangle(greyBrush, 360, 15, 5, 540);
+                g.FillRectangle(greyBrush, 50, 550, 310, 5);
+                g.FillRectangle(greyBrush, 50, 15, 310, 5);
+
+                //little hashes to show top of grid 
+                g.FillRectangle(greyBrush, 57, 247, 25, 1);
+                g.FillRectangle(greyBrush, 57, 247, 1, 20);
+                g.FillRectangle(greyBrush, 333, 247, 25, 1);
+                g.FillRectangle(greyBrush, 357, 247, 1, 20);
+
+                //dotted line 
+                g.FillRectangle(greyBrush, 107, 247, 21, 1);
+                g.FillRectangle(greyBrush, 153, 247, 21, 1);
+                g.FillRectangle(greyBrush, 199, 247, 21, 1);
+                g.FillRectangle(greyBrush, 245, 247, 21, 1);
+                g.FillRectangle(greyBrush, 291, 247, 21, 1);
+
+               
+
+
                 //generating backround grid 
                 if (A1 == 0)
                     g.FillRectangle(blackBrush, a1);
@@ -557,7 +608,7 @@ namespace tetrismaking
                     g.FillRectangle(redBrush, b4);
                 if (B44 == 2)
                     g.FillRectangle(orangleBrush, b4);
-                if (B4 == 3)
+                if (B44 == 3)
                     g.FillRectangle(cyanBrush, b4);
 
                 if (C1 == 0)
@@ -627,14 +678,25 @@ namespace tetrismaking
                     g.FillRectangle(cyanBrush, d4);
 
                 //generating live square 
+                //if 1x1 then red
                 if (shape ==1 )
                 g.FillRectangle(redBrush, live);
-                if (shape ==2 )
-                g.FillRectangle(orangleBrush,live);
-                if (shape == 3)
+                //if 2x1 tall then orange
+                if (shape == 2)
                 {
+                    g.FillRectangle(orangleBrush, live);
+                    //giving a grid like apperance so cutting it in half
+                    g.FillRectangle(blackBrush, live.X, live.Y + 70, 70, 5);
+                }
+                //if 1x2 wide then red
+                if (shape == 3)
+                {//is technically a 1x1 but with a wide overlayed above it 
+                    //real live
                     g.FillRectangle(cyanBrush, live);
+                    //visually live 
                     g.FillRectangle(cyanBrush, live.X,live.Y, 145, 70);
+                    //black line thru the middle 
+                    g.FillRectangle(blackBrush, live.X + 70, live.Y, 5, 70);
                 }
             }
 
