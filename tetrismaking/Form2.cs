@@ -8,24 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-using System.Drawing.Text;
 
 namespace tetrismaking
 {
-    public partial class Form1 : Form
-    {       SolidBrush blackBrush = new SolidBrush(Color.Black);
+    public partial class Form2 : Form
+    {
+        SolidBrush blackBrush = new SolidBrush(Color.Black);
         SolidBrush cyanBrush = new SolidBrush(Color.Cyan);
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush orangleBrush = new SolidBrush(Color.Orange);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         SolidBrush greyBrush = new SolidBrush(Color.Gray);
-            Pen greyPen = new Pen(Color.Gray, 3);
-       
+        Pen greyPen = new Pen(Color.Gray, 3);
+
         //invisible swuares n stuff
         Rectangle a1 = new Rectangle(60, 325, 70, 70);
         Rectangle a2 = new Rectangle(135, 325, 70, 70);
         Rectangle a3 = new Rectangle(210, 325, 70, 70);
-        Rectangle a4 = new Rectangle(285, 325, 70, 70); 
+        Rectangle a4 = new Rectangle(285, 325, 70, 70);
         Rectangle b1 = new Rectangle(60, 400, 70, 70);
         Rectangle b2 = new Rectangle(135, 400, 70, 70);
         Rectangle b3 = new Rectangle(210, 400, 70, 70);
@@ -43,7 +43,7 @@ namespace tetrismaking
         Rectangle e2 = new Rectangle(135, 250, 70, 70);
         Rectangle e3 = new Rectangle(210, 250, 70, 70);
         Rectangle e4 = new Rectangle(285, 250, 70, 70);
-      
+
         //live square 
         Rectangle live = new Rectangle(60, 25, 70, 70);
 
@@ -101,8 +101,8 @@ namespace tetrismaking
         int D33 = 0;
         int D44 = 0;
         int E11 = 0;
-        int E22= 0;
-        int E33=  0;
+        int E22 = 0;
+        int E33 = 0;
         int E44 = 0;
 
         //socre 
@@ -130,17 +130,18 @@ namespace tetrismaking
 
         //if you have or have not lost 
         Boolean lost = false;
-        public Form1()
+        public Form2()
         {
-           
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
-            
-            
-            
+
+        }
+
+        private void invalidatetimer_Tick(object sender, EventArgs e)
+        {
             Invalidate();
             //checking if each grid space intersects with the player and then upping their int
             //if a 1 by 1 square so only checks square under it 
@@ -217,7 +218,7 @@ namespace tetrismaking
             }
             if (shape == 2)
             {//tall shape 2x1, senses the bottom square and then manually fils in the one above 
-                if (e1.IntersectsWith(live) &&A1 == 1)
+                if (e1.IntersectsWith(live) && A1 == 1)
                 { E1 = 1; E11 = 2; gameend(); }
 
                 if (e2.IntersectsWith(live) && A2 == 1)
@@ -269,7 +270,7 @@ namespace tetrismaking
                 { D1 = 1; C1 = 1; D11 = 2; C11 = 2; returnlive(); }
 
                 if (d2.IntersectsWith(live))
-                { D2 = 1;C2 = 1; D22 = 2; C22 = 2; returnlive(); }
+                { D2 = 1; C2 = 1; D22 = 2; C22 = 2; returnlive(); }
 
                 if (d3.IntersectsWith(live))
                 { D3 = 1; C3 = 1; D33 = 2; C33 = 2; returnlive(); }
@@ -282,7 +283,7 @@ namespace tetrismaking
             {//wide square, only has three lateral positions so only three per level
                 if (f1.IntersectsWith(live) && E1 == 1 || f1.IntersectsWith(live) && E2 == 1)
                 { E1 = 1; E2 = 1; E11 = 3; E22 = 3; gameend(); }
-                
+
                 if (f2.IntersectsWith(live) && E2 == 1 || f2.IntersectsWith(live) && E3 == 1)
                 { E2 = 1; E3 = 1; E33 = 3; E22 = 3; gameend(); }
 
@@ -302,7 +303,7 @@ namespace tetrismaking
                 { E3 = 1; E4 = 1; E33 = 3; E44 = 3; returnlive(); }
 
                 if (a1.IntersectsWith(live) && B1 == 1 || a1.IntersectsWith(live) && B2 == 1)
-                { A1 = 1;  A2 = 1; A11 = 3; A22 = 3; returnlive(); }
+                { A1 = 1; A2 = 1; A11 = 3; A22 = 3; returnlive(); }
 
                 if (a2.IntersectsWith(live) && B2 == 1 || a2.IntersectsWith(live) && B3 == 1)
                 { A2 = 1; A3 = 1; A33 = 3; A22 = 3; returnlive(); }
@@ -310,7 +311,7 @@ namespace tetrismaking
                 if (a3.IntersectsWith(live) && B3 == 1 || a3.IntersectsWith(live) && B4 == 1)
                 { A3 = 1; A4 = 1; A33 = 3; A44 = 3; returnlive(); }
 
-               
+
 
                 if (b1.IntersectsWith(live) && C1 == 1 || b1.IntersectsWith(live) && C2 == 1)
                 { B1 = 1; B2 = 1; B11 = 3; B22 = 3; returnlive(); }
@@ -321,7 +322,7 @@ namespace tetrismaking
                 if (b3.IntersectsWith(live) && C3 == 1 || b3.IntersectsWith(live) && C4 == 1)
                 { B3 = 1; B4 = 1; B33 = 3; B44 = 3; returnlive(); }
 
-             
+
 
                 if (c1.IntersectsWith(live) && D1 == 1 || c1.IntersectsWith(live) && D2 == 1)
                 { C1 = 1; C2 = 1; C11 = 3; C22 = 3; returnlive(); }
@@ -334,25 +335,25 @@ namespace tetrismaking
 
 
                 if (d1.IntersectsWith(live))
-                { D1 = 1; D2 = 1; D11 = 3; D22= 3; returnlive(); }
+                { D1 = 1; D2 = 1; D11 = 3; D22 = 3; returnlive(); }
 
                 if (d2.IntersectsWith(live))
-                { D2 = 1; D3 = 1; D33= 3; D22 = 3; returnlive(); }
+                { D2 = 1; D3 = 1; D33 = 3; D22 = 3; returnlive(); }
 
                 if (d3.IntersectsWith(live))
                 { D3 = 1; D4 = 1; D33 = 3; D44 = 3; returnlive(); }
 
-               
+
             }
 
             //adding up the total value of each row 
-            int Etotal = E1+E2+E3+E4;
-            int Atotal = A1+A2+A3+A4;
-            int Btotal = B1+B2+B3+B4;
-            int Ctotal = C1+C2+C3+C4;
-            int Dtotal = D1+D2+D3+D4;
-            
-            scorelabel.Text = Etotal+" "+Atotal +" "+ Btotal + " "+ Ctotal + "  "+ Dtotal;
+            int Etotal = E1 + E2 + E3 + E4;
+            int Atotal = A1 + A2 + A3 + A4;
+            int Btotal = B1 + B2 + B3 + B4;
+            int Ctotal = C1 + C2 + C3 + C4;
+            int Dtotal = D1 + D2 + D3 + D4;
+
+            //scorelabel.Text = Etotal + " " + Atotal + " " + Btotal + " " + Ctotal + "  " + Dtotal;
             //if a row is filled clearing it and shifting ti down
             if (Dtotal == 4)
             {
@@ -439,13 +440,13 @@ namespace tetrismaking
         }
         private void returnlive()
         {
-          
+
             //moving the square back up
             live.Y = 25;
             if (gravitytimer.Interval > 500)
-            gravitytimer.Interval -= 25; 
+                gravitytimer.Interval -= 25;
             //randomly generating the next shape
-           shape= randgen.Next(1, 4);
+            shape = randgen.Next(1, 4);
             //based on number changing shape length
             if (shape == 1)
             {
@@ -463,7 +464,7 @@ namespace tetrismaking
             {
                 live.Height = 70;
                 live.Width = 70;
-                if ( live.X == 285)
+                if (live.X == 285)
                     live.X = 210;
             }
         }
@@ -565,7 +566,7 @@ namespace tetrismaking
                     A44 = 0;
                     A4 = 0;
                 }
-            
+
             }
             if (rowD == true || rowC == true || rowB == true || rowA == true)
             {//the pattern continues 
@@ -599,16 +600,16 @@ namespace tetrismaking
                 }
 
             }
-                rowD = false;
+            rowD = false;
 
         }
 
+        private void Form2_Paint(object sender, PaintEventArgs e)
+        {
+            //initializing graphics 
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {//initializing graphics 
-          
             Graphics g = e.Graphics;
-          //what shows if you have not lost 
+            //what shows if you have not lost 
             if (lost == false)
             {
                 BackColor = Color.Black;
@@ -669,17 +670,17 @@ namespace tetrismaking
                     g.FillRectangle(cyanBrush, e4);
 
 
-                    if (A1 == 0)
+                if (A1 == 0)
                     g.FillRectangle(blackBrush, a1);
-                if (A11 == 1) 
+                if (A11 == 1)
                     g.FillRectangle(redBrush, a1);
-                if (A11==2)
+                if (A11 == 2)
                     g.FillRectangle(orangleBrush, a1);
                 if (A11 == 3)
                     g.FillRectangle(cyanBrush, a1);
-               
-                    if (A2 == 0)
-                        g.FillRectangle(blackBrush, a2);
+
+                if (A2 == 0)
+                    g.FillRectangle(blackBrush, a2);
                 if (A22 == 1)
                     g.FillRectangle(redBrush, a2);
                 if (A22 == 2)
@@ -803,8 +804,8 @@ namespace tetrismaking
 
                 //generating live square 
                 //if 1x1 then red
-                if (shape ==1 )
-                g.FillRectangle(redBrush, live);
+                if (shape == 1)
+                    g.FillRectangle(redBrush, live);
                 //if 2x1 tall then orange
                 if (shape == 2)
                 {
@@ -818,67 +819,66 @@ namespace tetrismaking
                     //real live
                     g.FillRectangle(cyanBrush, live);
                     //visually live 
-                    g.FillRectangle(cyanBrush, live.X,live.Y, 145, 70);
+                    g.FillRectangle(cyanBrush, live.X, live.Y, 145, 70);
                     //black line thru the middle 
                     g.FillRectangle(blackBrush, live.X + 70, live.Y, 5, 70);
                 }
             }
+        }
 
-          
-
-
-
+        private void gravitytimer_Tick(object sender, EventArgs e)
+        {
+            //moving the box dow 
+            live.Y += 75;
+        }
+        private void gameend()
+        {
+            lost = true;
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
-            Form2 Form2 = new Form2();
-            Form2.Show();
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-           //movement for each shape
-           //1x1 square so has many degrees of freedom 
+            //movement for each shape
+            //1x1 square so has many degrees of freedom 
             if (shape == 1)
             {//only works above the grid, once within can no longer move 
-               
-                    switch (e.KeyCode)
-                    {
-                        case Keys.A:
-                            if (live.X > 60&& live.Y < 250)
-                                live.X -= 75;
-                            break;
-                        case Keys.D:
-                            if (live.X < 275 && live.Y < 250)
-                                live.X += 75;
-                            break;
-                        case Keys.S:
-                            live.Y += 75;
-                            break;
-                    }
-                
+
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        if (live.X > 60 && live.Y < 250)
+                            live.X -= 75;
+                        break;
+                    case Keys.D:
+                        if (live.X < 275 && live.Y < 250)
+                            live.X += 75;
+                        break;
+                    case Keys.S:
+                        live.Y += 75;
+                        break;
+                }
+
             }//tall square, mostly simmilar to 1x1
             if (shape == 2)
             {
 
-               
-                    switch (e.KeyCode)
-                    {
-                        case Keys.A:
-                            if (live.X > 60 && live.Y < 250)
-                                live.X -= 75;
-                            break;
-                        case Keys.D:
-                            if (live.X < 275 && live.Y < 250)
-                                live.X += 75;
-                            break;
-                        case Keys.S:
-                            live.Y += 75;
-                            break;
 
-                    
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        if (live.X > 60 && live.Y < 250)
+                            live.X -= 75;
+                        break;
+                    case Keys.D:
+                        if (live.X < 275 && live.Y < 250)
+                            live.X += 75;
+                        break;
+                    case Keys.S:
+                        live.Y += 75;
+                        break;
+
+
                 }
             }
             //wide shape, cant move too far to the right so it doesnt clip out of bounds 
@@ -886,48 +886,24 @@ namespace tetrismaking
             {
                 if (live.X > 210)
                     live.X = 210;
-               
-                    switch (e.KeyCode)
-                    {
-                        case Keys.A:
-                            if (live.X > 60 && live.Y < 250)
-                                live.X -= 75;
-                            break;
-                        case Keys.D:
-                            if (live.X < 200 && live.Y < 250)
-                                live.X += 75;
-                            break;
-                        case Keys.S:
-                            live.Y += 75;
-                            break;
 
-                    
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        if (live.X > 60 && live.Y < 250)
+                            live.X -= 75;
+                        break;
+                    case Keys.D:
+                        if (live.X < 200 && live.Y < 250)
+                            live.X += 75;
+                        break;
+                    case Keys.S:
+                        live.Y += 75;
+                        break;
+
+
                 }
             }
-            }
-        private void gameend() 
-        {
-            lost = true;
-        
-        }
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            
-            }
-       
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {//moving the box dow 
-            live.Y += 75;
-        }
-
-        private void leftrighttimer_Tick(object sender, EventArgs e)
-        {
-           
-        }
-        private void horisontalmove()
-        {   
-            
         }
     }
 }
