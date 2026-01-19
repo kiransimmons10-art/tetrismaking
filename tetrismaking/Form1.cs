@@ -13,7 +13,9 @@ using System.Drawing.Text;
 namespace tetrismaking
 {
     public partial class Form1 : Form
-    {  
+    {
+        
+       
         public Form1()
         {
            
@@ -59,12 +61,20 @@ namespace tetrismaking
         }
 
         private void startbutton_Click(object sender, EventArgs e)
-        {
+        {//showing the game itself and hiding this form
             Form2 Form2 = new Form2();
             Form2.Show();
-       
+            this.Hide();
+         
             
 
+        }
+
+        private void rulesbutton_Click(object sender, EventArgs e)
+        {
+            //showing the rules form
+        Form3 Form3 = new Form3();
+            Form3.Show();
         }
     }
 }

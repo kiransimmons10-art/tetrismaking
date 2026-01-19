@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.invalidatetimer = new System.Windows.Forms.Timer(this.components);
             this.gravitytimer = new System.Windows.Forms.Timer(this.components);
+            this.displaylabel = new System.Windows.Forms.Label();
+            this.scorelabel = new System.Windows.Forms.Label();
+            this.display2label = new System.Windows.Forms.Label();
+            this.namebox = new System.Windows.Forms.TextBox();
+            this.leaderboardlabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // invalidatetimer
@@ -45,11 +50,76 @@
             this.gravitytimer.Interval = 1000;
             this.gravitytimer.Tick += new System.EventHandler(this.gravitytimer_Tick);
             // 
+            // displaylabel
+            // 
+            this.displaylabel.Font = new System.Drawing.Font("Castellar", 40.25F);
+            this.displaylabel.ForeColor = System.Drawing.Color.White;
+            this.displaylabel.Location = new System.Drawing.Point(111, 42);
+            this.displaylabel.Name = "displaylabel";
+            this.displaylabel.Size = new System.Drawing.Size(234, 100);
+            this.displaylabel.TabIndex = 0;
+            this.displaylabel.Text = "SCORE";
+            this.displaylabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.displaylabel.Visible = false;
+            this.displaylabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // scorelabel
+            // 
+            this.scorelabel.Font = new System.Drawing.Font("Castellar", 40.25F);
+            this.scorelabel.ForeColor = System.Drawing.Color.White;
+            this.scorelabel.Location = new System.Drawing.Point(111, 142);
+            this.scorelabel.Name = "scorelabel";
+            this.scorelabel.Size = new System.Drawing.Size(234, 100);
+            this.scorelabel.TabIndex = 1;
+            this.scorelabel.Text = "SCORE";
+            this.scorelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.scorelabel.Visible = false;
+            // 
+            // display2label
+            // 
+            this.display2label.Font = new System.Drawing.Font("Castellar", 25.25F);
+            this.display2label.ForeColor = System.Drawing.Color.White;
+            this.display2label.Location = new System.Drawing.Point(85, 223);
+            this.display2label.Name = "display2label";
+            this.display2label.Size = new System.Drawing.Size(277, 123);
+            this.display2label.TabIndex = 2;
+            this.display2label.Text = "ENTER NAME";
+            this.display2label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.display2label.Visible = false;
+            // 
+            // namebox
+            // 
+            this.namebox.BackColor = System.Drawing.Color.Black;
+            this.namebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+            this.namebox.ForeColor = System.Drawing.Color.White;
+            this.namebox.Location = new System.Drawing.Point(165, 315);
+            this.namebox.Name = "namebox";
+            this.namebox.Size = new System.Drawing.Size(120, 31);
+            this.namebox.TabIndex = 3;
+            this.namebox.Visible = false;
+            // 
+            // leaderboardlabel
+            // 
+            this.leaderboardlabel.AutoSize = true;
+            this.leaderboardlabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.leaderboardlabel.Location = new System.Drawing.Point(176, 415);
+            this.leaderboardlabel.Name = "leaderboardlabel";
+            this.leaderboardlabel.Size = new System.Drawing.Size(35, 13);
+            this.leaderboardlabel.TabIndex = 4;
+            this.leaderboardlabel.Text = "label1";
+            this.leaderboardlabel.Click += new System.EventHandler(this.label1_Click_1);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(443, 660);
+            this.Controls.Add(this.leaderboardlabel);
+            this.Controls.Add(this.namebox);
+            this.Controls.Add(this.display2label);
+            this.Controls.Add(this.scorelabel);
+            this.Controls.Add(this.displaylabel);
             this.DoubleBuffered = true;
             this.Name = "Form2";
             this.Text = "Form2";
@@ -57,6 +127,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form2_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form2_KeyDown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -64,5 +135,10 @@
 
         private System.Windows.Forms.Timer invalidatetimer;
         private System.Windows.Forms.Timer gravitytimer;
+        private System.Windows.Forms.Label displaylabel;
+        private System.Windows.Forms.Label scorelabel;
+        private System.Windows.Forms.Label display2label;
+        private System.Windows.Forms.TextBox namebox;
+        private System.Windows.Forms.Label leaderboardlabel;
     }
 }

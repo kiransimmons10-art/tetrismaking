@@ -8,9 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace tetrismaking
-{
+{    
     public partial class Form2 : Form
     {
         SolidBrush blackBrush = new SolidBrush(Color.Black);
@@ -48,10 +49,10 @@ namespace tetrismaking
         Rectangle live = new Rectangle(60, 25, 70, 70);
 
         //top squares that sense if the game ends
-        Rectangle f1 = new Rectangle(60, 100, 70, 70);
-        Rectangle f2 = new Rectangle(135, 100, 70, 70);
-        Rectangle f3 = new Rectangle(210, 100, 70, 70);
-        Rectangle f4 = new Rectangle(285, 100, 70, 70);
+        Rectangle f1 = new Rectangle(60, 175, 70, 70);
+        Rectangle f2 = new Rectangle(135, 175, 70, 70);
+        Rectangle f3 = new Rectangle(210, 175, 70, 70);
+        Rectangle f4 = new Rectangle(285, 175, 70, 70);
         //and their respective ints 
         int F1 = 0;
         int F2 = 0;
@@ -126,11 +127,26 @@ namespace tetrismaking
 
         //if you have or have not lost 
         Boolean lost = false;
+
+        //external file handling hopefully
+        string filePath = @"C:\Users\csimm\Documents\tetrisscores.txt";
+        List<Player> students = new List<Player>
+          {
+        new Player { Name = "Dave", Score = 25 },
+        new Player { Name = "Adam", Score= 74 },
+        new Player { Name = "God", Score= 10 }
+          };
         public Form2()
         {
             InitializeComponent();
         }
-
+        class Player
+        {
+            //get means the rest of our program can 'get'/access the Name or game property
+            //set means the rest of our program can 'set'/assign values to the Name or Grade Property
+            public string Name { get; set; }
+            public int Score { get; set; }
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -628,7 +644,8 @@ namespace tetrismaking
                 g.FillRectangle(greyBrush, 245, 247, 21, 1);
                 g.FillRectangle(greyBrush, 291, 247, 21, 1);
 
-
+             
+              
 
 
                 //generating backround grid 
@@ -820,7 +837,23 @@ namespace tetrismaking
                     g.FillRectangle(blackBrush, live.X + 70, live.Y, 5, 70);
                 }
             }
+            if (lost == true)
+            {
+                scorelabel.Visible = true;
+                displaylabel.Visible = true;
+                display2label.Visible = true;
+                namebox.Visible = true;
+                scorelabel.Text = realscore + "";
+                leaderboardlabel.Text = "";
 
+                students.Sort((p1, p2) => p2.Score.CompareTo(p1.Score));
+                for (int i = 0; i < students.Count; i++)
+                {
+                    leaderboardlabel.Text += students[i].Name + " " + students[i].Score + "      "+"\n\n";
+                }
+
+
+            }
            
         }
 
@@ -898,6 +931,8 @@ namespace tetrismaking
             Thread.Sleep(100);
             Refresh();
             lost = true;
+         
+        
 
         }
 
@@ -965,11 +1000,22 @@ namespace tetrismaking
                         break;
                     case Keys.S:
                         live.Y += 75;
+                        realscore += 1;
                         break;
 
 
                 }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
