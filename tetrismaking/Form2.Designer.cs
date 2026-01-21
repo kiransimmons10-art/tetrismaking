@@ -36,6 +36,7 @@
             this.display2label = new System.Windows.Forms.Label();
             this.namebox = new System.Windows.Forms.TextBox();
             this.leaderboardlabel = new System.Windows.Forms.Label();
+            this.namebutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // invalidatetimer
@@ -79,9 +80,9 @@
             // 
             this.display2label.Font = new System.Drawing.Font("Castellar", 25.25F);
             this.display2label.ForeColor = System.Drawing.Color.White;
-            this.display2label.Location = new System.Drawing.Point(85, 223);
+            this.display2label.Location = new System.Drawing.Point(85, 242);
             this.display2label.Name = "display2label";
-            this.display2label.Size = new System.Drawing.Size(277, 123);
+            this.display2label.Size = new System.Drawing.Size(277, 52);
             this.display2label.TabIndex = 2;
             this.display2label.Text = "ENTER NAME";
             this.display2label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -90,24 +91,41 @@
             // namebox
             // 
             this.namebox.BackColor = System.Drawing.Color.Black;
-            this.namebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+            this.namebox.Font = new System.Drawing.Font("Castellar", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.namebox.ForeColor = System.Drawing.Color.White;
-            this.namebox.Location = new System.Drawing.Point(165, 315);
+            this.namebox.Location = new System.Drawing.Point(164, 312);
             this.namebox.Name = "namebox";
-            this.namebox.Size = new System.Drawing.Size(120, 31);
+            this.namebox.Size = new System.Drawing.Size(120, 32);
             this.namebox.TabIndex = 3;
             this.namebox.Visible = false;
+            this.namebox.TextChanged += new System.EventHandler(this.namebox_TextChanged);
             // 
             // leaderboardlabel
             // 
-            this.leaderboardlabel.AutoSize = true;
+            this.leaderboardlabel.Font = new System.Drawing.Font("Castellar", 14.25F);
             this.leaderboardlabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.leaderboardlabel.Location = new System.Drawing.Point(176, 415);
+            this.leaderboardlabel.Location = new System.Drawing.Point(134, 389);
             this.leaderboardlabel.Name = "leaderboardlabel";
-            this.leaderboardlabel.Size = new System.Drawing.Size(35, 13);
+            this.leaderboardlabel.Size = new System.Drawing.Size(222, 270);
             this.leaderboardlabel.TabIndex = 4;
             this.leaderboardlabel.Text = "label1";
+            this.leaderboardlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.leaderboardlabel.Visible = false;
             this.leaderboardlabel.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // namebutton
+            // 
+            this.namebutton.BackColor = System.Drawing.Color.Black;
+            this.namebutton.Font = new System.Drawing.Font("Castellar", 15.25F);
+            this.namebutton.ForeColor = System.Drawing.Color.White;
+            this.namebutton.Location = new System.Drawing.Point(171, 349);
+            this.namebutton.Name = "namebutton";
+            this.namebutton.Size = new System.Drawing.Size(103, 37);
+            this.namebutton.TabIndex = 5;
+            this.namebutton.Text = "Enter";
+            this.namebutton.UseVisualStyleBackColor = false;
+            this.namebutton.Visible = false;
+            this.namebutton.Click += new System.EventHandler(this.namebutton_Click);
             // 
             // Form2
             // 
@@ -115,8 +133,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(443, 660);
-            this.Controls.Add(this.leaderboardlabel);
             this.Controls.Add(this.namebox);
+            this.Controls.Add(this.namebutton);
+            this.Controls.Add(this.leaderboardlabel);
             this.Controls.Add(this.display2label);
             this.Controls.Add(this.scorelabel);
             this.Controls.Add(this.displaylabel);
@@ -140,5 +159,6 @@
         private System.Windows.Forms.Label display2label;
         private System.Windows.Forms.TextBox namebox;
         private System.Windows.Forms.Label leaderboardlabel;
+        private System.Windows.Forms.Button namebutton;
     }
 }

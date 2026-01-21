@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
-using System.IO;
+using System.Xml.Linq;
 
 namespace tetrismaking
 {    
@@ -130,7 +132,7 @@ namespace tetrismaking
 
         //external file handling hopefully
         string filePath = @"C:\Users\csimm\Documents\tetrisscores.txt";
-        List<Player> students = new List<Player>
+        List<Player> winners = new List<Player>
           {
         new Player { Name = "Dave", Score = 25 },
         new Player { Name = "Adam", Score= 74 },
@@ -359,6 +361,11 @@ namespace tetrismaking
             }
 
             //adding up the total value of each row 
+           // rowD = false;
+           // rowC=false;
+           // rowB=false;
+           // rowA=false;
+           // rowE = false;
             int Etotal = E1 + E2 + E3 + E4;
             int Atotal = A1 + A2 + A3 + A4;
             int Btotal = B1 + B2 + B3 + B4;
@@ -482,6 +489,8 @@ namespace tetrismaking
         }
         private void moverows()
         {//if the entire bottom row is full 
+            
+            
             if (rowD == true)
             {
                 {//manually checking if the square above is occupied then moving the value down
@@ -516,6 +525,14 @@ namespace tetrismaking
                     C44 = 0;
                     C4 = 0;
                 }
+                //hopefully checking if the rows are refilled
+             //   int Dtotal = D1 + D2 + D3 + D4;
+              //  if (Dtotal == 4)
+                //    rowD = true;
+               // if (Dtotal != 4)
+                  //  rowD = false;
+
+
             }
             if (rowD == true || rowC == true)
             {//if row d or row c is filled then same as above but upper rows
@@ -547,6 +564,11 @@ namespace tetrismaking
                     B44 = 0;
                     B4 = 0;
                 }
+             //   int Ctotal = C1 + C2 + C3 + C4;
+             //   if (Ctotal == 4)
+                 //   rowC = true;
+               // if (Ctotal != 4)
+                  //  rowC = false;
             }
             if (rowD == true || rowC == true || rowB == true)
             {//the pattern continues 
@@ -578,7 +600,11 @@ namespace tetrismaking
                     A44 = 0;
                     A4 = 0;
                 }
-
+              //  int Btotal = B1 + B2 + B3 + B4;
+              //  if (Btotal == 4)
+               //     rowB = true;
+               // if (Btotal != 4)
+                   // rowB = false;
             }
             if (rowD == true || rowC == true || rowB == true || rowA == true)
             {//the pattern continues 
@@ -610,9 +636,17 @@ namespace tetrismaking
                     E44 = 0;
                     E4 = 0;
                 }
-
+               // int Atotal = A1 + A2 + A3 + A4;
+               // if (Atotal == 4)
+                   // rowA = true;
+               // if (Atotal != 4)
+                   // rowA = false;
             }
             rowD = false;
+           // rowC = false;
+           // rowB = false;
+           // rowA = false;  
+           // rowE=false;
 
         }
 
@@ -838,19 +872,17 @@ namespace tetrismaking
                 }
             }
             if (lost == true)
-            {
+            {//making all the labels visible and displaying score 
                 scorelabel.Visible = true;
                 displaylabel.Visible = true;
                 display2label.Visible = true;
+                namebox.Enabled = true;
                 namebox.Visible = true;
                 scorelabel.Text = realscore + "";
-                leaderboardlabel.Text = "";
-
-                students.Sort((p1, p2) => p2.Score.CompareTo(p1.Score));
-                for (int i = 0; i < students.Count; i++)
-                {
-                    leaderboardlabel.Text += students[i].Name + " " + students[i].Score + "      "+"\n\n";
-                }
+               // leaderboardlabel.Text = "";
+                namebutton.Visible = true;
+                
+               
 
 
             }
@@ -938,72 +970,75 @@ namespace tetrismaking
 
         private void Form2_KeyDown(object sender, KeyEventArgs e)
         {  //in case of frame perfect movement where the player clips thru the floor
-            if (live.Y > 600)
-                returnlive();
-            //movement for each shape
-            //1x1 square so has many degrees of freedom 
-            if (shape == 1)
-            {//only works above the grid, once within can no longer move 
-
-                switch (e.KeyCode)
-                {
-                    case Keys.A:
-                        if (live.X > 60 && live.Y < 250)
-                            live.X -= 75;
-                        break;
-                    case Keys.D:
-                        if (live.X < 275 && live.Y < 250)
-                            live.X += 75;
-                        break;
-                    case Keys.S:
-                        live.Y += 75;
-                        break;
-                }
-
-            }//tall square, mostly simmilar to 1x1
-            if (shape == 2)
+            if (lost == false)
             {
+                if (live.Y > 600)
+                    returnlive();
+                //movement for each shape
+                //1x1 square so has many degrees of freedom 
+                if (shape == 1)
+                {//only works above the grid, once within can no longer move 
 
+                    switch (e.KeyCode)
+                    {
+                        case Keys.A:
+                            if (live.X > 60 && live.Y < 250)
+                                live.X -= 75;
+                            break;
+                        case Keys.D:
+                            if (live.X < 275 && live.Y < 250)
+                                live.X += 75;
+                            break;
+                        case Keys.S:
+                            live.Y += 75;
+                            break;
+                    }
 
-                switch (e.KeyCode)
+                }//tall square, mostly simmilar to 1x1
+                if (shape == 2)
                 {
-                    case Keys.A:
-                        if (live.X > 60 && live.Y < 250)
-                            live.X -= 75;
-                        break;
-                    case Keys.D:
-                        if (live.X < 275 && live.Y < 250)
-                            live.X += 75;
-                        break;
-                    case Keys.S:
-                        live.Y += 75;
-                        break;
 
 
+                    switch (e.KeyCode)
+                    {
+                        case Keys.A:
+                            if (live.X > 60 && live.Y < 250)
+                                live.X -= 75;
+                            break;
+                        case Keys.D:
+                            if (live.X < 275 && live.Y < 250)
+                                live.X += 75;
+                            break;
+                        case Keys.S:
+                            live.Y += 75;
+                            break;
+
+
+                    }
                 }
-            }
-            //wide shape, cant move too far to the right so it doesnt clip out of bounds 
-            if (shape == 3)
-            {
-                if (live.X > 210)
-                    live.X = 210;
-
-                switch (e.KeyCode)
+                //wide shape, cant move too far to the right so it doesnt clip out of bounds 
+                if (shape == 3)
                 {
-                    case Keys.A:
-                        if (live.X > 60 && live.Y < 250)
-                            live.X -= 75;
-                        break;
-                    case Keys.D:
-                        if (live.X < 200 && live.Y < 250)
-                            live.X += 75;
-                        break;
-                    case Keys.S:
-                        live.Y += 75;
-                        realscore += 1;
-                        break;
+                    if (live.X > 210)
+                        live.X = 210;
+
+                    switch (e.KeyCode)
+                    {
+                        case Keys.A:
+                            if (live.X > 60 && live.Y < 250)
+                                live.X -= 75;
+                            break;
+                        case Keys.D:
+                            if (live.X < 200 && live.Y < 250)
+                                live.X += 75;
+                            break;
+                        case Keys.S:
+                            live.Y += 75;
+                            realscore += 1;
+                            break;
 
 
+                    }
                 }
             }
         }
@@ -1014,6 +1049,59 @@ namespace tetrismaking
         }
 
         private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void namebutton_Click(object sender, EventArgs e)
+        {//getting the players name
+
+            namebutton.Enabled = false;
+            namebutton.Visible = false;
+            winners.Clear();//clear list before adding items read from file
+
+            string[] lines = File.ReadAllLines(filePath);
+            //read the file in, line by line into an array
+            string name2;
+            int score1;
+            for (int i = 0; i < lines.Length; i = i + 2)
+            {
+                name2 = lines[i];
+                //read the 'ith' line in and it will be the name
+
+                score1 = Convert.ToInt16(lines[i + 1]);
+                //the next line will be the grade
+                winners.Add(new Player { Name = name2, Score = score1 });
+                //make new students with the properties of name and grade as read in
+            }
+            string newname = namebox.Text;
+            leaderboardlabel.Text = "";
+            //adding it to the list
+            winners.Add(new Player { Name = newname, Score = realscore });
+         
+                //lists scare me, sorting players by score to show on the leaderboard
+                winners.Sort((p1, p2) => p2.Score.CompareTo(p1.Score));
+                for (int i = 0; i < winners.Count; i++)
+                {
+                    leaderboardlabel.Text += winners[i].Name + " " + winners[i].Score + "      " + "\n\n";
+                }
+
+            File.WriteAllText(filePath, ""); // clear file first
+            //opening the file 
+            using (StreamWriter writer = new StreamWriter(filePath))
+            
+            {//setting the values from the file 
+                for (int i = 0; i < winners.Count; i++)
+                {
+                    writer.WriteLine(winners[i].Name);
+                    writer.WriteLine(winners[i].Score);
+                }
+            }
+                leaderboardlabel.Visible = true;
+            
+        }
+
+        private void namebox_TextChanged(object sender, EventArgs e)
         {
 
         }
