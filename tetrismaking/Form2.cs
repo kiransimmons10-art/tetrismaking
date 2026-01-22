@@ -6,11 +6,13 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace tetrismaking
 {    
@@ -475,7 +477,7 @@ namespace tetrismaking
 
             //moving the square back up
             live.Y = 25;
-            if (gravitytimer.Interval > 500)
+            if (gravitytimer.Interval > 250)
                 gravitytimer.Interval -= 25;
             //pulling the next shape from the array
             shape = nextblock[1];
@@ -1145,10 +1147,23 @@ namespace tetrismaking
                 winners.Add(new Player { Name = name2, Score = score1 });
                 //make new students with the properties of name and grade as read in
             }
-            string newname = namebox.Text;
+          //initializing the players name
+            string longname = namebox.Text;
+            if (longname == "fuck" || longname == "shit" || longname == "ass" || longname == "bitch" || longname == "dick" || longname == "shit" || longname == "cum")
+            { longname = "xxx"; }
             leaderboardlabel.Text = "";
-            //adding it to the list
-            winners.Add(new Player { Name = newname, Score = realscore });
+            string newname;
+            //if its longer than eight charachters then
+            if (longname.Length > 7)
+            {//making a new string at max of seven
+                newname = longname.Substring(1, 7); 
+            }//if else then it just swaps over as is 
+           else { newname = longname; }
+            //profanity filter thanks declan
+          
+                
+                //adding it to the list
+                winners.Add(new Player { Name = newname, Score = realscore });
          
                 //lists scare me, sorting players by score to show on the leaderboard
                 winners.Sort((p1, p2) => p2.Score.CompareTo(p1.Score));
@@ -1156,6 +1171,7 @@ namespace tetrismaking
                 {
                     leaderboardlabel.Text += winners[i].Name + " " + winners[i].Score + "      " + "\n\n";
                 }
+         
 
             File.WriteAllText(filePath, ""); // clear file first
             //opening the file 
