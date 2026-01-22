@@ -37,6 +37,7 @@
             this.namebox = new System.Windows.Forms.TextBox();
             this.leaderboardlabel = new System.Windows.Forms.Label();
             this.namebutton = new System.Windows.Forms.Button();
+            this.nextuplabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // invalidatetimer
@@ -127,12 +128,24 @@
             this.namebutton.Visible = false;
             this.namebutton.Click += new System.EventHandler(this.namebutton_Click);
             // 
+            // nextuplabel
+            // 
+            this.nextuplabel.AutoSize = true;
+            this.nextuplabel.Font = new System.Drawing.Font("Castellar", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextuplabel.ForeColor = System.Drawing.Color.White;
+            this.nextuplabel.Location = new System.Drawing.Point(369, 101);
+            this.nextuplabel.Name = "nextuplabel";
+            this.nextuplabel.Size = new System.Drawing.Size(62, 13);
+            this.nextuplabel.TabIndex = 6;
+            this.nextuplabel.Text = "NEXT UP";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(443, 660);
+            this.Controls.Add(this.nextuplabel);
             this.Controls.Add(this.namebox);
             this.Controls.Add(this.namebutton);
             this.Controls.Add(this.leaderboardlabel);
@@ -160,5 +173,6 @@
         private System.Windows.Forms.TextBox namebox;
         private System.Windows.Forms.Label leaderboardlabel;
         private System.Windows.Forms.Button namebutton;
+        private System.Windows.Forms.Label nextuplabel;
     }
 }

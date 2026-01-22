@@ -15,7 +15,7 @@ using System.Xml.Linq;
 namespace tetrismaking
 {    
     public partial class Form2 : Form
-    {
+    {//initalizing brushes :)
         SolidBrush blackBrush = new SolidBrush(Color.Black);
         SolidBrush cyanBrush = new SolidBrush(Color.Cyan);
         SolidBrush redBrush = new SolidBrush(Color.Red);
@@ -133,24 +133,32 @@ namespace tetrismaking
         //external file handling hopefully
         string filePath = @"C:\Users\csimm\Documents\tetrisscores.txt";
         List<Player> winners = new List<Player>
-          {
+          {//default scores
         new Player { Name = "Dave", Score = 25 },
         new Player { Name = "Adam", Score= 74 },
         new Player { Name = "God", Score= 10 }
           };
+
+        //array to store and then display the next few blocks 
+        int[] nextblock = new int[5];
+
+        //int to save the prior value of the swuare
+        int oldsquare = 0;
         public Form2()
         {
             InitializeComponent();
         }
         class Player
         {
-            //get means the rest of our program can 'get'/access the Name or game property
-            //set means the rest of our program can 'set'/assign values to the Name or Grade Property
+            //actually making the ids for each player so the scoring will worksssss
             public string Name { get; set; }
             public int Score { get; set; }
         }
         private void Form2_Load(object sender, EventArgs e)
         {
+            for (int i = 0; i < nextblock.Length; i++) {
+                nextblock[i]= randgen.Next(1,4);
+            }
 
         }
 
@@ -374,98 +382,110 @@ namespace tetrismaking
 
             //scorelabel.Text = Etotal + " " + Atotal + " " + Btotal + " " + Ctotal + "  " + Dtotal;
             //if a row is filled clearing it and shifting ti down
-            if (Dtotal == 4)
+            if (Dtotal == 4 || Ctotal == 4 || Btotal == 4 || Atotal == 4)
             {
-                realscore += 4;
-                //making unoccupied
-                D1 = 0;
-                D2 = 0;
-                D3 = 0;
-                D4 = 0;
-                //making black
-                D11 = 0;
-                D22 = 0;
-                D33 = 0;
-                D44 = 0;
-                //telling the next function which is row is full
-                rowD = true;
-                //starting the next function
-                moverows();
+                if (Dtotal == 4)
+                {
+                    realscore += 4;
+                    //making unoccupied
+                    D1 = 0;
+                    D2 = 0;
+                    D3 = 0;
+                    D4 = 0;
+                    //making black
+                    D11 = 0;
+                    D22 = 0;
+                    D33 = 0;
+                    D44 = 0;
+                    //telling the next function which is row is full
+                    rowD = true;
+                    //starting the next function
+                   // moverows();
 
-            }
-            if (Ctotal == 4)
-            {
-                realscore += 4;
-                C1 = 0;
-                C2 = 0;
-                C3 = 0;
-                C4 = 0;
-                C11 = 0;
-                C22 = 0;
-                C33 = 0;
-                C44 = 0;
-                rowC = true;
-                moverows();
+                }
+                if (Ctotal == 4)
+                {
+                    realscore += 4;
+                    C1 = 0;
+                    C2 = 0;
+                    C3 = 0;
+                    C4 = 0;
+                    C11 = 0;
+                    C22 = 0;
+                    C33 = 0;
+                    C44 = 0;
+                    rowC = true;
+                   // moverows();
 
-            }
-            if (Btotal == 4)
-            {
-                realscore += 4;
-                B1 = 0;
-                B2 = 0;
-                B3 = 0;
-                B4 = 0;
-                B11 = 0;
-                B22 = 0;
-                B33 = 0;
-                B44 = 0;
-                rowB = true;
-                moverows();
+                }
+                if (Btotal == 4)
+                {
+                    realscore += 4;
+                    B1 = 0;
+                    B2 = 0;
+                    B3 = 0;
+                    B4 = 0;
+                    B11 = 0;
+                    B22 = 0;
+                    B33 = 0;
+                    B44 = 0;
+                    rowB = true;
+                   // moverows();
 
-            }
-            if (Atotal == 4)
-            {
-                realscore += 4;
-                A1 = 0;
-                A2 = 0;
-                A3 = 0;
-                A4 = 0;
-                A11 = 0;
-                A22 = 0;
-                A33 = 0;
-                A44 = 0;
-                rowA = true;
-                moverows();
+                }
+                if (Atotal == 4)
+                {
+                    realscore += 4;
+                    A1 = 0;
+                    A2 = 0;
+                    A3 = 0;
+                    A4 = 0;
+                    A11 = 0;
+                    A22 = 0;
+                    A33 = 0;
+                    A44 = 0;
+                    rowA = true;
+                   // moverows();
 
-            }
-            if (Etotal == 4)
-            {
-                realscore += 4;
-                E1 = 0;
-                E2 = 0;
-                E3 = 0;
-                E4 = 0;
-                E11 = 0;
-                E22 = 0;
-                E33 = 0;
-                E44 = 0;
-                rowE = true;
-                moverows();
+                }
+                if (Etotal == 4)
+                {
+                    realscore += 4;
+                    E1 = 0;
+                    E2 = 0;
+                    E3 = 0;
+                    E4 = 0;
+                    E11 = 0;
+                    E22 = 0;
+                    E33 = 0;
+                    E44 = 0;
+                    rowE = true;
+                   // moverows();
 
+                }
+                moverows();
             }
 
 
 
         }
         private void returnlive()
-        {
+        {//remebering the prior square
+            oldsquare = shape;
 
             //moving the square back up
             live.Y = 25;
             if (gravitytimer.Interval > 500)
                 gravitytimer.Interval -= 25;
-            //randomly generating the next shape
-            shape = randgen.Next(1, 4);
+            //pulling the next shape from the array
+            shape = nextblock[1];
+            //shifting them all down
+            for (int i = 0; i < nextblock.Length-1; i++) {
+                nextblock[i]=nextblock[i+1];
+            }
+            //making a new last block
+            nextblock[4] = randgen.Next(1, 4);
+
             //based on number changing shape length
             if (shape == 1)
             {
@@ -488,11 +508,57 @@ namespace tetrismaking
             }
         }
         private void moverows()
-        {//if the entire bottom row is full 
-            
-            
-            if (rowD == true)
-            {
+        {
+            //make it so that if you clear two rows at the same time 
+            //the whole grid clears and adds a bunch to your score 
+           if (rowD==true && rowC==true|| rowC==true &&rowB==true|| rowB==true && rowA==true|| rowA==true&&rowE==true)
+            {//making sure it was acctually the right swuare
+                if (oldsquare == 2)
+                {
+                    //increases score
+                    realscore += 12;
+                    //stops block from falling
+                    gravitytimer.Enabled = false;
+                    //clearing the whole grid
+                    D11 = D22 = D33 = D44 = C11 = C22 = C33 = C44 = B11 = B22 = B33 = B44 = A11 = A22 = A33 = A44 = E11 = E22 = E33 = E44 = 0;
+                    E1 = E2 = E3 = E4 = A1 = A2 = A3 = A4 = B1 = B2 = B3 = B4 = C1 = C2 = C3 = C4 = D1 = D2 = D3 = D4 = 0;
+                    //setting all of the squares to yellow
+                    D11 = D22 = D33 = D44 = 2;
+                    //row by row
+                    Refresh();
+                    Thread.Sleep(200);
+                    C11 = C22 = C33 = C44 = 2;
+                    Refresh();
+                    Thread.Sleep(200);
+                    B11 = B22 = B33 = B44 = 2;
+                    Refresh();
+                    Thread.Sleep(200);
+                    A11 = A22 = A33 = A44 = 2;
+                    Refresh();
+                    Thread.Sleep(200);
+                    E11 = E22 = E33 = E44 = 2;
+                    Refresh();
+                    Thread.Sleep(200);
+                    //flashing the grid so it all goes black
+                    D11 = D22 = D33 = D44 = C11 = C22 = C33 = C44 = B11 = B22 = B33 = B44 = A11 = A22 = A33 = A44 = E11 = E22 = E33 = E44 = 0;
+
+                    Refresh();
+                    Thread.Sleep(200);
+                    //then goes back to yellow 
+                    D11 = D22 = D33 = D44 = C11 = C22 = C33 = C44 = B11 = B22 = B33 = B44 = A11 = A22 = A33 = A44 = E11 = E22 = E33 = E44 = 2;
+                    Refresh();
+                    Thread.Sleep(200);
+                    //and finnaly a full clear 
+                    D11 = D22 = D33 = D44 = C11 = C22 = C33 = C44 = B11 = B22 = B33 = B44 = A11 = A22 = A33 = A44 = E11 = E22 = E33 = E44 = 0;
+                    E1 = E2 = E3 = E4 = A1 = A2 = A3 = A4 = B1 = B2 = B3 = B4 = C1 = C2 = C3 = C4 = D1 = D2 = D3 = D4 = 0;
+                    //setting the rows to false 
+                    rowE = rowA = rowB = rowC = rowD = false;
+                    //letting the block fall agin
+                    gravitytimer.Enabled = true;
+                }
+            }
+                //if the bottom row is full
+                if (rowD == true)
                 {//manually checking if the square above is occupied then moving the value down
                     if (C1 == 1)
                         D1 = 1;
@@ -525,15 +591,7 @@ namespace tetrismaking
                     C44 = 0;
                     C4 = 0;
                 }
-                //hopefully checking if the rows are refilled
-             //   int Dtotal = D1 + D2 + D3 + D4;
-              //  if (Dtotal == 4)
-                //    rowD = true;
-               // if (Dtotal != 4)
-                  //  rowD = false;
-
-
-            }
+               
             if (rowD == true || rowC == true)
             {//if row d or row c is filled then same as above but upper rows
                 if (B1 == 1)
@@ -564,11 +622,7 @@ namespace tetrismaking
                     B44 = 0;
                     B4 = 0;
                 }
-             //   int Ctotal = C1 + C2 + C3 + C4;
-             //   if (Ctotal == 4)
-                 //   rowC = true;
-               // if (Ctotal != 4)
-                  //  rowC = false;
+        
             }
             if (rowD == true || rowC == true || rowB == true)
             {//the pattern continues 
@@ -600,11 +654,7 @@ namespace tetrismaking
                     A44 = 0;
                     A4 = 0;
                 }
-              //  int Btotal = B1 + B2 + B3 + B4;
-              //  if (Btotal == 4)
-               //     rowB = true;
-               // if (Btotal != 4)
-                   // rowB = false;
+            
             }
             if (rowD == true || rowC == true || rowB == true || rowA == true)
             {//the pattern continues 
@@ -636,18 +686,20 @@ namespace tetrismaking
                     E44 = 0;
                     E4 = 0;
                 }
-               // int Atotal = A1 + A2 + A3 + A4;
-               // if (Atotal == 4)
-                   // rowA = true;
-               // if (Atotal != 4)
-                   // rowA = false;
+              
             }
             rowD = false;
-           // rowC = false;
-           // rowB = false;
-           // rowA = false;  
-           // rowE=false;
-
+            //checking if each row is filled or not 
+            if (A1+A2+A3+A4 != 4)
+                rowA = false;
+            if (B1 + B2 + B3 + B4 != 4)
+                rowB = false;
+            if (C1 + C2 + C3 + C4 != 4)
+                rowC = false;
+            if (D1 + D2 + D3 + D4 != 4)
+                rowD = false;
+            if (E1 + E2 + E3 + E4 != 4)
+                rowE = false;
         }
 
         private void Form2_Paint(object sender, PaintEventArgs e)
@@ -678,9 +730,27 @@ namespace tetrismaking
                 g.FillRectangle(greyBrush, 245, 247, 21, 1);
                 g.FillRectangle(greyBrush, 291, 247, 21, 1);
 
-             
-              
+                //little grey line above next blocks
+                g.FillRectangle(greyBrush, 370, 120, 65, 3);
 
+                int offset = 0;
+                //displaying the next 4 blocks 
+                for (int i = 1; i < nextblock.Length; i++) {
+                    //an int to make sure they nive down proportinslly 
+                    offset += 50;
+                    //as long as its not the current block
+                    if (i != 1)
+                    {//if tall block make ofset bigger 
+                        if (nextblock[i - 1] == 2)
+                            offset += 25;
+                    }
+                    //if next is 1x1
+                    if (nextblock[i] == 1)
+                        //renders mini 1x1
+                    { g.FillRectangle(redBrush,375,100+offset,20,20); }
+                    //same formula as the 1x1 for the other two blocks 
+                    if (nextblock[i]==2) { g.FillRectangle(orangleBrush, 375, 100 + offset, 20, 45); }
+                    if (nextblock[i] == 3) { g.FillRectangle(cyanBrush, 375, 100 + offset, 45, 20); } }
 
                 //generating backround grid 
                 if (E1 == 0)
@@ -878,6 +948,7 @@ namespace tetrismaking
                 display2label.Visible = true;
                 namebox.Enabled = true;
                 namebox.Visible = true;
+                nextuplabel.Visible = false;
                 scorelabel.Text = realscore + "";
                // leaderboardlabel.Text = "";
                 namebutton.Visible = true;
@@ -886,7 +957,7 @@ namespace tetrismaking
 
 
             }
-           
+            
         }
 
         private void gravitytimer_Tick(object sender, EventArgs e)
