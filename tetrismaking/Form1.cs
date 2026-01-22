@@ -15,7 +15,7 @@ namespace tetrismaking
     public partial class Form1 : Form
     {
         
-       
+       //just a title screen, not much past two buttons to show the rules and the game
         public Form1()
         {
            

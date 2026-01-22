@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace tetrismaking
 {
     public partial class Form3 : Form
-    {
+    {// a rules form, has a label to show the rules and then a button to close itslef and to reshow form 1
         public Form3()
         {
             InitializeComponent();

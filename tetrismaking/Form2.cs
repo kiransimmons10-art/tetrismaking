@@ -16,7 +16,8 @@ using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace tetrismaking
-{    
+{    //this is the whole game itelf, has a 5x4 grid tetris, 3 different blocks, external score tracking, row clearing and some pretty okay visuals,
+    //and a loosing screen, all in all im rather proud, though even though the code should work my audio files all say theyre corrupted :(
     public partial class Form2 : Form
     {//initalizing brushes :)
         SolidBrush blackBrush = new SolidBrush(Color.Black);
@@ -166,6 +167,7 @@ namespace tetrismaking
             for (int i = 0; i < nextblock.Length; i++) {
                 nextblock[i]= randgen.Next(1,4);
             }
+           // Invalidate();
             //crashes the game for no apparent reason
            // player.PlayLooping();
         }
@@ -567,135 +569,69 @@ namespace tetrismaking
             }
             //if the bottom row is full
             if (rowD == true)
-            {//manually checking if the square above is occupied then moving the value down
-                if (C1 == 1)
-                {
-                    D1 = 1;
-                    D11 = 0;
-                    D11 = C11;
-                    C11 = 0;
-                    C1 = 0;
+            {
+                //simply switches each spaces value to that of the one above it 
+                D1 = C1;
+                //and the same for their color values
+                D11 = C11;
+                D2= C2;
+                D22 = C22;
+                D3 = C3;
+                D33 = C33;
+                D4 = C4;
+                D44 = C44;
+                //then cleares the row above
+                C1 = C2 = C3 = C4 = 0;
+                C11 = C22 = C33 = C44 = 0;
 
-                }
-                if (C2 == 1)
-                {
-                    D2 = 1;
-                    D22 = 0;
-                    D22 = C22;
-                    C22 = 0;
-                    C2 = 0;
-                }
-                if (C3 == 1)
-                {
-                    D3 = 1;
-                    D33 = 0;
-                    D33 = C33;
-                    C33 = 0;
-                    C3 = 0;
-                }
-                if (C4 == 1)
-                {
-                    D4 = 1;
-                    D44 = 0;
-                    D44 = C44;
-                    C44 = 0;
-                    C4 = 0;
-                }
+              
             }
             if (rowD == true || rowC == true)
             {//if row d or row c is filled then same as above but upper rows
-                if (B1 == 1)
-                {
-                    C1 = 1;
-                    C11 = B11;
-                    B11 = 0;
-                    B1 = 0;
-                }
-                if (B2 == 1)
-                {
-                    C2 = 1;
-                    C22 = B22;
-                    B22 = 0;
-                    B2 = 0;
-                }
-                if (B3 == 1)
-                {
-                    C3 = 1;
-                    C33 = B33;
-                    B33 = 0;
-                    B3 = 0;
-                }
-                if (B4 == 1)
-                {
-                    C4 = 1;
-                    C44 = B44;
-                    B44 = 0;
-                    B4 = 0;
-                }
+               
+                C1 = B1;
+                C11 = B11;
+                C2= B2;
+                C22 = B22;
+                C3 = B3;
+                C33 = B33;
+                C4 = B4;
+                C44 = B44;
+                B1 = B2 = B3 = B4 = 0;
+                B11 = B22 = B33 = B44 = 0;
+               
         
             }
             if (rowD == true || rowC == true || rowB == true)
             {//the pattern continues 
-                if (A1 == 1)
-                {
-                    B1 = 1;
-                    B11 = A11;
-                    A11 = 0;
-                    A1 = 0;
-                }
-                if (A2 == 1)
-                {
-                    B2 = 1;
-                    B22 = A22;
-                    A22 = 0;
-                    A2 = 0;
-                }
-                if (A3 == 1)
-                {
-                    B3 = 1;
-                    B33 = A33;
-                    A33 = 0;
-                    A3 = 0;
-                }
-                if (A4 == 1)
-                {
-                    B4 = 1;
-                    B44 = A44;
-                    A44 = 0;
-                    A4 = 0;
-                }
-            
+                
+                B1 = A1;
+                B11 = A11;
+                B2 = A2;
+                B22 = A22;
+                B3 = A3;
+                B33 = A33;
+                B4 = A44;
+                B44 = A44;
+                A1 = A2 = A3 = A4 = 0;
+                A11 = A22 = A33 = A44 = 0;
+             
             }
             if (rowD == true || rowC == true || rowB == true || rowA == true)
             {//the pattern continues 
-                if (E1 == 1)
-                {
-                    A1 = 1;
-                    A11 = E11;
-                    E11 = 0;
-                    E1 = 0;
-                }
-                if (E2 == 1)
-                {
-                    A2 = 1;
-                    A22 = E22;
-                    E22 = 0;
-                    E2 = 0;
-                }
-                if (E3 == 1)
-                {
-                    A3 = 1;
-                    A33 = E33;
-                    E33 = 0;
-                    E3 = 0;
-                }
-                if (E4 == 1)
-                {
-                    A4 = 1;
-                    A44 = E44;
-                    E44 = 0;
-                    E4 = 0;
-                }
+               
+                A1 = E1;
+                A11 = E11;
+                A2 = E2;
+                A22= E22;
+                A3 = E3;
+                A33 = E33;
+                A4 = E4;
+                A44 = E44;
+                E1=E2=E3=E4 = 0;
+                E11 = E22 = E33 = E44 = 0;
+                    
+                
               
             }
             
