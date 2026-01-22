@@ -390,7 +390,7 @@ namespace tetrismaking
 
             //scorelabel.Text = Etotal + " " + Atotal + " " + Btotal + " " + Ctotal + "  " + Dtotal;
             //if a row is filled clearing it and shifting ti down
-            if (Dtotal == 4 || Ctotal == 4 || Btotal == 4 || Atotal == 4)
+            if (Dtotal == 4 || Ctotal == 4 || Btotal == 4 || Atotal == 4||Etotal==4)
             {
                 if (Dtotal == 4)
                 {
@@ -483,7 +483,7 @@ namespace tetrismaking
 
             //moving the square back up
             live.Y = 25;
-            if (gravitytimer.Interval > 250)
+            if (gravitytimer.Interval > 275)
                 gravitytimer.Interval -= 25;
             //pulling the next shape from the array
             shape = nextblock[1];
@@ -524,7 +524,7 @@ namespace tetrismaking
                 if (oldsquare == 2)
                 {
                     //increases score
-                    realscore += 12;
+                    realscore += 20;
                     //stops block from falling
                     gravitytimer.Enabled = false;
                     //clearing the whole grid
@@ -565,15 +565,17 @@ namespace tetrismaking
                     gravitytimer.Enabled = true;
                 }
             }
-                //if the bottom row is full
-                if (rowD == true)
-                {//manually checking if the square above is occupied then moving the value down
-                    if (C1 == 1)
-                        D1 = 1;
+            //if the bottom row is full
+            if (rowD == true)
+            {//manually checking if the square above is occupied then moving the value down
+                if (C1 == 1)
+                {
+                    D1 = 1;
                     D11 = 0;
                     D11 = C11;
                     C11 = 0;
                     C1 = 0;
+
                 }
                 if (C2 == 1)
                 {
@@ -599,7 +601,7 @@ namespace tetrismaking
                     C44 = 0;
                     C4 = 0;
                 }
-               
+            }
             if (rowD == true || rowC == true)
             {//if row d or row c is filled then same as above but upper rows
                 if (B1 == 1)
@@ -696,6 +698,7 @@ namespace tetrismaking
                 }
               
             }
+            
             rowD = false;
             //checking if each row is filled or not 
             if (A1+A2+A3+A4 != 4)
@@ -703,10 +706,10 @@ namespace tetrismaking
             if (B1 + B2 + B3 + B4 != 4)
                 rowB = false;
             if (C1 + C2 + C3 + C4 != 4)
-                rowC = false;
+               rowC = false;
             if (D1 + D2 + D3 + D4 != 4)
-                rowD = false;
-            if (E1 + E2 + E3 + E4 != 4)
+               rowD = false;
+          if (E1 + E2 + E3 + E4 != 4)
                 rowE = false;
         }
 
@@ -1060,16 +1063,24 @@ namespace tetrismaking
 
                     switch (e.KeyCode)
                     {
-                        case Keys.A:
+                        case Keys.A://so it doest move out of bounds
                             if (live.X > 60 && live.Y < 250)
+                                //move left 1 grid space
                                 live.X -= 75;
                             break;
                         case Keys.D:
                             if (live.X < 275 && live.Y < 250)
+                                //right one space
                                 live.X += 75;
                             break;
                         case Keys.S:
                             live.Y += 75;
+                            //down 1 space 
+                            //resetting the timer so theres no double actions 
+                            gravitytimer.Enabled = false;
+                            gravitytimer.Enabled = true;
+                            //add score
+                            realscore += 1;
                             break;
                     }
 
@@ -1089,6 +1100,9 @@ namespace tetrismaking
                                 live.X += 75;
                             break;
                         case Keys.S:
+                            gravitytimer.Enabled = false;
+                            gravitytimer.Enabled = true;
+                            realscore += 1;
                             live.Y += 75;
                             break;
 
@@ -1097,7 +1111,7 @@ namespace tetrismaking
                 }
                 //wide shape, cant move too far to the right so it doesnt clip out of bounds 
                 if (shape == 3)
-                {
+                {//so we dont have half of ti clip though the wall
                     if (live.X > 210)
                         live.X = 210;
 
@@ -1113,6 +1127,8 @@ namespace tetrismaking
                             break;
                         case Keys.S:
                             live.Y += 75;
+                            gravitytimer.Enabled=false;
+                            gravitytimer.Enabled = true;
                             realscore += 1;
                             break;
 
@@ -1133,10 +1149,16 @@ namespace tetrismaking
         }
 
         private void namebutton_Click(object sender, EventArgs e)
-        {//getting the players name
-
+        {
+            //for some reason the border of the button and text box are still visible 
+            //so im going to have them move offscreen instead 
+            namebox.Location=new Point(800,800);
+            namebutton.Location = new Point(800, 800);
             namebutton.Enabled = false;
             namebutton.Visible = false;
+            namebox.Visible = false;
+            display2label.Text = "Leaderboard";
+
             winners.Clear();//clear list before adding items read from file
 
             string[] lines = File.ReadAllLines(filePath);
@@ -1199,6 +1221,11 @@ namespace tetrismaking
         private void namebox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
         }
     }
 }

@@ -75,6 +75,7 @@ namespace tetrismaking
             //showing the rules form
         Form3 Form3 = new Form3();
             Form3.Show();
+            this.Hide();
         }
     }
 }

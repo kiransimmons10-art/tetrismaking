@@ -19,6 +19,8 @@ namespace tetrismaking
 
         private void returnbutton_Click(object sender, EventArgs e)
         {//closes itslef
+            Form1 Form1 = new Form1();
+            Form1.Show();
             this.Close();
         }
     }

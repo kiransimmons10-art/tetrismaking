@@ -82,9 +82,9 @@
             // 
             this.display2label.Font = new System.Drawing.Font("Castellar", 25.25F);
             this.display2label.ForeColor = System.Drawing.Color.White;
-            this.display2label.Location = new System.Drawing.Point(85, 242);
+            this.display2label.Location = new System.Drawing.Point(48, 242);
             this.display2label.Name = "display2label";
-            this.display2label.Size = new System.Drawing.Size(277, 52);
+            this.display2label.Size = new System.Drawing.Size(346, 52);
             this.display2label.TabIndex = 2;
             this.display2label.Text = "ENTER NAME";
             this.display2label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -106,9 +106,9 @@
             // 
             this.leaderboardlabel.Font = new System.Drawing.Font("Castellar", 14.25F);
             this.leaderboardlabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.leaderboardlabel.Location = new System.Drawing.Point(134, 389);
+            this.leaderboardlabel.Location = new System.Drawing.Point(134, 303);
             this.leaderboardlabel.Name = "leaderboardlabel";
-            this.leaderboardlabel.Size = new System.Drawing.Size(222, 270);
+            this.leaderboardlabel.Size = new System.Drawing.Size(222, 307);
             this.leaderboardlabel.TabIndex = 4;
             this.leaderboardlabel.Text = "label1";
             this.leaderboardlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -157,6 +157,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.Text = "Tetris";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form2_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form2_KeyDown);
