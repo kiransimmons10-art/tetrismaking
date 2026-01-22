@@ -66,7 +66,7 @@
             this.Controls.Add(this.returnbutton);
             this.Controls.Add(this.label1);
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "Rules";
             this.ResumeLayout(false);
 
         }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.invalidatetimer = new System.Windows.Forms.Timer(this.components);
             this.gravitytimer = new System.Windows.Forms.Timer(this.components);
             this.displaylabel = new System.Windows.Forms.Label();
@@ -153,8 +154,9 @@
             this.Controls.Add(this.scorelabel);
             this.Controls.Add(this.displaylabel);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Tetris";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form2_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form2_KeyDown);

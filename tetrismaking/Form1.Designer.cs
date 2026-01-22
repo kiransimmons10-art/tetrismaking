@@ -86,7 +86,7 @@
             this.Font = new System.Drawing.Font("Castellar", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Tetris";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);

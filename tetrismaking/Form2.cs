@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
@@ -146,6 +147,10 @@ namespace tetrismaking
 
         //int to save the prior value of the swuare
         int oldsquare = 0;
+        //soundplayer for music
+        SoundPlayer player = new SoundPlayer(Properties.Resources.tetris_theme_a);
+        
+
         public Form2()
         {
             InitializeComponent();
@@ -161,7 +166,8 @@ namespace tetrismaking
             for (int i = 0; i < nextblock.Length; i++) {
                 nextblock[i]= randgen.Next(1,4);
             }
-
+            //crashes the game for no apparent reason
+           // player.PlayLooping();
         }
 
         private void invalidatetimer_Tick(object sender, EventArgs e)
@@ -963,7 +969,7 @@ namespace tetrismaking
         }
 
         private void gravitytimer_Tick(object sender, EventArgs e)
-        {
+        { 
             //moving the box dow 
             live.Y += 75;
         }
