@@ -1149,6 +1149,7 @@ namespace tetrismaking
             }
           //initializing the players name
             string longname = namebox.Text;
+            //profanity filter thanks declan
             if (longname == "fuck" || longname == "shit" || longname == "ass" || longname == "bitch" || longname == "dick" || longname == "shit" || longname == "cum")
             { longname = "xxx"; }
             leaderboardlabel.Text = "";
@@ -1159,7 +1160,7 @@ namespace tetrismaking
                 newname = longname.Substring(1, 7); 
             }//if else then it just swaps over as is 
            else { newname = longname; }
-            //profanity filter thanks declan
+       
           
                 
                 //adding it to the list
@@ -1171,7 +1172,8 @@ namespace tetrismaking
                 {
                     leaderboardlabel.Text += winners[i].Name + " " + winners[i].Score + "      " + "\n\n";
                 }
-         
+           
+          
 
             File.WriteAllText(filePath, ""); // clear file first
             //opening the file 

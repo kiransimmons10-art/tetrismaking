@@ -128,7 +128,7 @@ You CANNOT move horisontally past the dotted line
 
 You lose if your blocks cross the dotted line 
 
-Filling a line will cause all above it to move down
+Filling 2 lines simultaniously will clear the full grid
 
 Try to reach the highest score possible
 </value>
