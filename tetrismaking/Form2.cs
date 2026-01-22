@@ -134,6 +134,8 @@ namespace tetrismaking
         //if you have or have not lost 
         Boolean lost = false;
 
+        //lil mention to ms stone this will crash your computer because its linked to only a file on my computer
+        //so youll have to change it to a doc on yours 
         //external file handling hopefully
         string filePath = @"C:\Users\csimm\Documents\tetrisscores.txt";
         List<Player> winners = new List<Player>
@@ -533,22 +535,21 @@ namespace tetrismaking
                     D11 = D22 = D33 = D44 = C11 = C22 = C33 = C44 = B11 = B22 = B33 = B44 = A11 = A22 = A33 = A44 = E11 = E22 = E33 = E44 = 0;
                     E1 = E2 = E3 = E4 = A1 = A2 = A3 = A4 = B1 = B2 = B3 = B4 = C1 = C2 = C3 = C4 = D1 = D2 = D3 = D4 = 0;
                     //setting all of the squares to yellow
-                    D11 = D22 = D33 = D44 = 2;
-                    //row by row
+                    D11 = E11 = D44 = E44 = 2;
+                    //fills in with a circular pattern, outside in
                     Refresh();
                     Thread.Sleep(200);
-                    C11 = C22 = C33 = C44 = 2;
+                    C11 = D22 = D33 = C44 = 2;
+                    A11 = A44 = E22 = E33 = 2;
                     Refresh();
                     Thread.Sleep(200);
-                    B11 = B22 = B33 = B44 = 2;
+                    B11 = B44 = A33 = A22 = C33=C22= 2;
                     Refresh();
                     Thread.Sleep(200);
-                    A11 = A22 = A33 = A44 = 2;
+                    B22 = B33 = 2;
                     Refresh();
                     Thread.Sleep(200);
-                    E11 = E22 = E33 = E44 = 2;
-                    Refresh();
-                    Thread.Sleep(200);
+                    
                     //flashing the grid so it all goes black
                     D11 = D22 = D33 = D44 = C11 = C22 = C33 = C44 = B11 = B22 = B33 = B44 = A11 = A22 = A33 = A44 = E11 = E22 = E33 = E44 = 0;
 
